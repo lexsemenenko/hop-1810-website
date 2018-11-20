@@ -1,5 +1,5 @@
 ---
-title: Alex Semenenko
+title: Alexander Semenenko
 date: 2018-11-19T04:13:09.500Z
 first_name: Александр
 last_name: Семененко
