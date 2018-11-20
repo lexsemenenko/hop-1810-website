@@ -1,0 +1,87 @@
+backend:
+  name: git-gateway
+
+# media_folder: "site/static/img" # Folder where user uploaded files should go
+public_folder: "img"
+
+collections: # A list of collections the CMS should be able to edit
+  - name: "media" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Media" # Used in the UI, ie.: "New Post"
+    folder: "content/media" # The path to the folder where the documents are stored
+    extension: "md"
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+    fields: # The fields each document in this collection have
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Media ID", name: "media_id", widget: "string" }
+      - { label: "Audio URL", name: "url_audio", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "sermon" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Sermon" # Used in the UI, ie.: "New Post"
+    folder: "content/sermon" # The path to the folder where the documents are stored
+    extension: "md"
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Sermon Name", name: "sermon_name", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Sermon Date", name: "date", widget: "datetime" }
+      - {
+          label: "Media ID",
+          name: "media_id",
+          widget: "relation",
+          collection: "media",
+          searchFields: ["title"],
+          valueField: "media_id",
+          displayFields: ["title", "media_id"],
+        }
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["Ru", "En"],
+        }
+      - { label: "Person ID", name: "person_id", widget: "string" }
+      - { label: "Intro", name: "intro", widget: "markdown", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "people"
+    label: "People"
+    folder: "content/people"
+    extension: "md"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "First Name", name: "first_name", widget: "string" }
+      - { label: "Last Name", name: "last_name", widget: "string" }
+      - { label: "Person ID", name: "person_id", widget: "string" }
+      - { label: "Position", name: "position", widget: "string" }
+      - label: "Person Type"
+        name: "person_type"
+        widget: "select"
+        options:
+          - { label: "Сотрудник", value: "staff" }
+          - { label: "Гость", value: "guest" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: Person Photo
+        name: person_photo
+        widget: image
+        required: false
+        options:
+          media_library:
+            config:
+              multiple: true
+              previewStep: false
+
+# =============================================================================
+# Media Library: Uploadcare
+# =============================================================================
+
+media_library:
+  name: uploadcare
+  config:
+    publicKey: e648da588e51a9894aff

@@ -1,0 +1,89 @@
+title: House of Prayer for All
+# subTitle: Subtitle
+
+#Debugging
+log: false
+# logFile: 'hugo-debug.log'
+verbose: false
+verboseLog: false
+uglyURLs: false # make simple HTML files not directories
+
+#=====================================
+
+#for Local
+# baseURL: ""
+# RelativeURLs: true # rewrite to relative to root of content
+# canonifyURLs: false # switch to true to prefix URLs with baseURL
+
+#For Package
+baseURL: "/"
+RelativeURLs: false # rewrite to relative to root of content
+canonifyURLs: true # switch to true to prefix URLs with baseURL
+
+#=====================================
+
+# Defualt Outputs
+disableKinds: ["RSS", "404", "sitemap", "robotsTXT"]
+
+# Content Settings
+MetaDataFormat: "yaml"
+pluralizeListTitles: false
+author: Lex Semenenko
+
+# Markdown
+blackfriday:
+  plainIDAnchors: true
+  smartypants: true
+  smartDashes: true
+  fractions: false # Formats expressions like 2/3
+  angledQuotes: true # Actual quote marks
+  taskLists: false
+  hrefTargetBlank: false # Only works with site having relative URLs
+  nofollowLinks: false # Only works with site having relative URLs
+  latexDashes: true # Deals with em & en dashes working correctly
+  noreferrerLinks: false # Only works with site having relative URLs
+  extensions:
+  extensionsmask: ["autoHeaderIds"] # Removes header IDs that are added automatically. Required for TOC to work
+
+# Global Variables
+Params:
+  package: false
+  path:
+    images: "/images/"
+    files: "/files/"
+
+# =============================================================================
+# Menu
+# =============================================================================
+
+menu:
+  # Main
+  # =============================================================================
+
+  main:
+    # Level One
+    # =====================================
+
+    - name: "Главная"
+      weight: 1
+      url: "/"
+      identifier: "home"
+    - name: "Проповеди"
+      weight: 3
+      url: "/sermon/"
+
+# =============================================================================
+# Relationships
+# =============================================================================
+
+related:
+  threshold: 0
+  toLower: true
+  includeNewer: true
+  indices:
+    - name: "person_id" # The name of the indice, same as Front Matter's .Param key.
+      weight: 1 # We don't really need this, but omitting it would disable the indice.
+      includeNewer: true # Here our relationship is timeless! This prevents Hugo from ignoring newer posts.
+    - name: "media_id"
+      weight: 2
+      includeNewer: true

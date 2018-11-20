@@ -1,0 +1,74 @@
+
+// Text Sizes
+// =====================================
+
+// Added to bottom as override 
+
+.mix-bottom-stylesheet() {
+
+  // Defualt
+  // -----------------------------------
+
+  .t-base { 
+    .mix-text(
+      @size: @t-base, 
+      @lh: @t-base-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+
+  // Sizes
+  // -----------------------------------
+
+  .t-large-xx { 
+    .mix-text(
+      @size: @t-large-xx, 
+      @lh: @t-large-xx-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+  .t-large-x { 
+    .mix-text(
+      @size: @t-large-x, 
+      @lh: @t-large-x-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+  .t-large { 
+    .mix-text(
+      @size: @t-large, 
+      @lh: @t-large-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+  .t-small { 
+    .mix-text(
+      @size: @t-small, 
+      @lh: @t-small-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+  .t-small-x { 
+    .mix-text(
+      @size: @t-small-x, 
+      @lh: @t-small-x-lh, 
+      @family: inherit, 
+      @with-p: yes
+    ); 
+  }
+
+  // Line Height Modifiers
+  // -----------------------------------
+
+  .t-dense { 
+    line-height: @t-lh-dense; 
+    p {  line-height: @t-lh-dense;  }
+  }
+  .no-lh { line-height: @t-lh-no;  } 
+
+}

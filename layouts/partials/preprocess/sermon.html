@@ -1,0 +1,45 @@
+{{/* Setup Vars
+// ============================================================================= */}}
+
+{{ $var := .Scratch }}
+
+
+{{/* Local Vars
+// ============================================================================= */}}
+{{ $sermon_name := .Params.sermon_name }}
+{{ $sermon_date := .Date.Format "Monday, Jan 2, 2006" }}
+
+
+{{/* Related Media Vars
+// ============================================================================= */}}
+
+{{ $var.Set "rel_media" dict }}
+{{ $sermon := where (.Site.RegularPages.RelatedIndices . "media_id" ) "Type" "media" }}
+{{ range $sermon }}
+  {{ $var.SetInMap "rel_media" "url" .Params.url_audio }}
+{{ end }}
+{{ $rel_media := $var.Get "rel_media" }}
+
+{{/* Related Speaker Vars
+// ============================================================================= */}}
+
+{{ $people := where (.Site.RegularPages.RelatedIndices . "person_id" ) "Type" "people" }}
+{{ range $people }}
+  {{ $var.SetInMap "rel_people" "first_name" .Params.first_name }}
+  {{ $var.SetInMap "rel_people" "last_name" .Params.last_name }}
+  {{ $var.SetInMap "rel_people" "position" .Params.position }}
+  {{ $var.SetInMap "rel_people" "person_type" .Params.person_type }}
+{{ end }}
+{{ $rel_people := $var.Get "rel_people" }}
+
+
+{{/* Collect ALL Vars for export
+// ============================================================================= */}}
+
+{{ $var.Set "preprocess_sermon" dict }}
+{{ $var.SetInMap "preprocess_sermon" "name_sermon" $sermon_name }}
+{{ $var.SetInMap "preprocess_sermon" "sermon_date" $sermon_date }}
+{{ $var.SetInMap "preprocess_sermon" "name_speaker"  (printf "%[1]s %[2]s" $rel_people.first_name $rel_people.last_name) }}
+{{ $var.SetInMap "preprocess_sermon" "sermon_url" $rel_media.url }}
+{{ $var.SetInMap "preprocess_sermon" "speaker_position" $rel_people.position }}
+{{ $var.SetInMap "preprocess_sermon" "speaker_person_type" $rel_people.person_type }}

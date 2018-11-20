@@ -1,0 +1,9 @@
+[build]
+  publish = "public"
+  command = "gulp build"
+
+[context.production.environment]
+  HUGO_VERSION = "0.51"
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.51"

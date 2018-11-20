@@ -1,0 +1,27 @@
+{{ define "hero" }}
+  <h1 class="hero__title h1">{{.Title}}</h1>
+  <p>{{ .Params.person_type }}, {{ .Params.position }}</p>
+{{ end }}
+
+
+{{ define "content" }}
+
+  {{ if isset .Params.person_photo 0 }}
+    <img src="{{ index (.Params.person_photo) 0 }}-/resize/x240/" alt="Alt">
+  {{ end }}
+  
+  {{ .Content }}
+  <br><br>
+  {{ $sermons := where (.Site.RegularPages.RelatedIndices . "person_id" ) "Type" "sermon" }}
+  {{ with $sermons }}
+    <h2>Проповеди:</h2>
+    <ul>
+      {{ range . }}
+        <li>
+          <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
+{{ end }}

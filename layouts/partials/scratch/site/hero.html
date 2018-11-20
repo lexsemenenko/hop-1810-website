@@ -1,0 +1,5 @@
+{{ if .IsHome }}
+	{{ .Scratch.Add "classes-hero" (slice "hero--home") }}
+{{ else }}
+  {{ .Scratch.Add "classes-hero" (slice (printf "%s" "hero--page")) }}
+{{ end }}

@@ -1,0 +1,24 @@
+{{ define "hero" }}
+  <h1 class="hero__title h1">Проповедь</h1>
+{{ end }}
+
+{{ define "content" }}
+  {{ $var := .Scratch }}
+  {{ partial "preprocess/sermon.html" . }}
+  {{ $preprocess_sermon := $var.Get "preprocess_sermon" }}
+  {{ $name_sermon := $preprocess_sermon.name_sermon }}
+  {{ $name_speaker := $preprocess_sermon.name_speaker }}
+  {{ $sermon_url := $preprocess_sermon.sermon_url }}
+  {{ $speaker_position := $preprocess_sermon.speaker_position }}
+  {{ $speaker_person_type := $preprocess_sermon.speaker_person_type }}
+  {{ $sermon_date := $preprocess_sermon.sermon_date }}
+ 
+  <h2 class="h2">{{ $name_sermon }}</h2>
+  <p>{{ $sermon_date }} {{ $name_speaker }} | {{ $speaker_person_type }} | {{ $speaker_position }} </p>
+  <br>
+
+  <audio class="plyr-player" controls>
+    <source src="{{ $sermon_url }}" type="audio/mp3">
+  </audio>
+
+{{ end }}

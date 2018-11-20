@@ -1,0 +1,26 @@
+.section--hero {
+  position: relative;
+  h1 {
+    color: white;
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    background: linear-gradient(300deg,rgb(11,135,147),rgb(54,0,51));
+    opacity: 0.85;
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.section--content {
+  padding-top: 30px;
+  padding-bottom: 60px;
+}

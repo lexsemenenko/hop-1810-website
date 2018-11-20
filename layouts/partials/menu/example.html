@@ -1,0 +1,32 @@
+<!-- 
+  
+Params:
+- menu              array     Menu array to run the template on
+- children          boolean   Whether or not to include children
+- classname         string    Base classname for menu
+- loopcount         integer   Number to start the depth of the loop at (this is superficial for styling classname purposes) 
+
+-->
+
+{{- $currentNode := .currentNode -}}
+{{ $loopCount := .loopCount -}}
+{{ $classname := default "nav" .classname -}}
+{{ $item := print $classname "__" "item" -}}
+{{ $link := print $classname "__" "link" -}}
+{{ $withChildren := default true .children }}
+<ul class="{{ $classname }}__menu {{ $classname }}__menu--lev-{{ $loopCount }}">
+  {{ range $index, $element := .menu -}}
+
+    {{ $isCurrent := $currentNode.IsMenuCurrent "main" . -}}
+    {{ $hasCurrent := $currentNode.HasMenuCurrent "main" . -}}
+    {{ $classes := print $item " " (cond $isCurrent (print $item "--active ") "") (cond $hasCurrent (print $item "--has-active ") "") (cond .HasChildren (print $item "--has-children ") "") $item "--lev-" $loopCount -}}
+    {{ $classesLink := print $link " " (cond $isCurrent (print $link "--active ") "") (cond $hasCurrent (print $link "--has-active ") "") (cond .HasChildren (print $link "--has-children ") "") $link "--lev-" $loopCount -}}
+
+    <li id="{{ $classname }}-{{ $index  }}" class="{{ $classes }}">
+      <a href="{{ .URL | safeURL }}" class="{{ $classesLink }}">{{ .Name }}</a>
+        {{ if and .HasChildren $withChildren -}}
+          {{ partial "menu.html" (dict "menu" .Children "currentNode" $currentNode "loopCount" (add 1 $loopCount) "classname" $classname) -}}
+        {{ end -}}
+      </li>
+  {{end}} 
+</ul>

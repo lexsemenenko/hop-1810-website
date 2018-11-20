@@ -1,0 +1,19 @@
+
+{{ define "hero" }}
+  <h1 class="hero__title h1">{{.Title}}</h1>
+{{ end }}
+
+{{ define "content" }}
+
+  <div class="content__intro">
+    {{ .Params.intro }}
+  </div>
+
+  <ul>
+    {{ range .Pages }}
+      <li>
+        <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

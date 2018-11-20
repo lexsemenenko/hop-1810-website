@@ -1,0 +1,37 @@
+// =============================================================================
+// Sermon List
+// =============================================================================
+
+.sermon-list {
+  lost-center: @site-max-width * 0.6;
+
+  &__item {
+    margin-bottom: @element-margin;
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+  &__header {
+    padding: (@base-medium/2) @base-medium;
+  }
+  &__title {
+    .t-large;
+  }
+  &__speaker {
+    padding-bottom: @base-medium/2
+  }
+  &__body {
+  }
+  &__footer {
+    border-top: 1px solid @color-black-15;
+    padding: @base-medium/2 @base-medium;
+    background-color: @color-black-7;
+  }
+  &__meta {
+    .t-small;
+    .t-italic;
+    padding: @base-medium;
+    padding-bottom: 0;
+    color: @color-black-50;
+  }
+}

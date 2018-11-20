@@ -1,0 +1,87 @@
+{{ $pageid := .Params.pageid }}
+{{ $siteUrl := .Site.BaseURL }}
+
+<!doctype html>
+<html lang="en">
+  {{ partial "head.html" . }}
+  <body class="in-{{ .Section | urlize }}">
+
+    <header class="site-header">
+      <div class="section">
+      <nav class="section__content">
+        <div class="site-header__logo">
+          <a href="/">
+            <h2><span class="hide-v">House of Prayer for All </span>hofp.us</h2>
+          </a>
+        </div>
+        <nav class="site-header__nav">
+          {{ block "menu-main" . }}
+            {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
+          {{ end }}
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+
+      {{ partial "scratch/site/hero.html" . }}
+      <div class='section section--hero  hero {{ delimit (.Scratch.Get "classes-hero") " " }}'>
+        <div class="section__content">
+          <div class="hero__content">
+            {{ block "hero" . }}{{ end }}
+          </div>
+        </div>
+      </div>
+
+      <div class="section section--content">
+        <div class="section__content">
+          {{ block "content" . }}{{ end }}
+        </div>
+      </div>
+    </main>
+
+    <div class="site-footer">
+      <div class="section">
+        <div class="section__content">
+          {{ block "footer" . }}
+            <div class="row">
+              <div class="col-l-6 col-3">
+                <h3>Адрес</h3>
+                <p>House of Prayer For All<br>
+                3503 Beechwood Blvd<br>
+                Pittsburgh, PA, 15217</p>
+                <p>hofp.us @ gmail.com</p>
+              </div>
+              <div class="col-l-6 col-3">
+              </div>
+              <div class="col-l-6 col-3">
+              </div>
+              <div class="col-l-6 col-3">
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <div class="section">
+        <div class="section__content">
+          <div class="row">
+            <div class="col-l-6 col-3">
+            </div>
+            <div class="col-l-6 col-3">
+            </div>
+            <div class="col-l-6 col-3">
+            </div>
+            <div class="col-l-6 col-3 t-right">
+              Powered by Hugo. <a href="http://lex.me">lex.me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html> 

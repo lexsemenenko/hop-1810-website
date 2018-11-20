@@ -1,0 +1,45 @@
+/*
+
+===========================================================================
+BASE: HTML/BODY
+===========================================================================
+
+Version:            1.0.0
+
+// Changes:         1.0.0 | ...
+
+
+*/
+
+html {
+  font-size: @t-base;
+  line-height: @t-base-lh;
+  color: @t-base-color;
+  font-family: @t-family-base;
+  color: @t-base-color;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  @media @mobile {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  & when (@toggle-rem = on) {
+    // When using rem convert type base to percent
+    @calc-rem: (@t-base / 16) * 100;
+    font-size: unit(@calc-rem, %);
+  }
+}
+
+*, 
+*:before, 
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}

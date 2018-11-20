@@ -1,0 +1,49 @@
+/*
+
+===========================================================================
+Base: Typography
+===========================================================================
+
+Version:            1.0.0
+
+*/
+
+h1, h2, h3, h4, h5, h6, ul, li, p, ol, pre, code { 
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  border-width: 0;
+  border-style: solid;
+  font-weight: inherit;
+}
+p {
+  // .mix-text-size('base', true); 
+}
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+small { 
+  // .mix-text-size("small", true); 
+}
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+b, strong { font-weight: bold; }
+
+.mix-bottom-stylesheet() {
+  .t-light { font-weight: 300; }
+  .t-normal { font-weight: normal; }
+  .t-semibold { font-weight: 600; }
+  .t-italic { font-style: italic; } // When not using <em>
+  .t-bold { font-weight: bold; } // When not using <strong>
+  .t-center { text-align: center; }
+  .t-left { text-align: left; }
+  .t-right { text-align: right; }
+  .t-upper { text-transform: uppercase; }
+  .t-lower { text-transform: lowercase; }
+  .t-title { text-transform: capitalize; }
+}
+

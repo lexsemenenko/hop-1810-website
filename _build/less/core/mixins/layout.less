@@ -1,0 +1,118 @@
+// =============================================================================
+// MIXINS: LAYOUT
+// =============================================================================
+
+// Site Padding Match 
+// =============================================================================
+
+.mix-match-site-padding(@properties...) {
+
+  each(@properties, {
+    @{value}: @site-padding;
+  });
+
+  & when not (@site-padding-large = false) and not (@site-padding-large--break = false) {
+    @media @site-padding-large--break {
+      each(@properties, {
+        @{value}: @site-padding-large;
+      });
+    }
+  }
+  & when not (@site-padding-small = false) and not (@site-padding-small--break = false) {
+    @media @site-padding-small--break {
+      each(@properties, {
+        @{value}: @site-padding-small;
+      });
+    }
+  }
+}
+
+
+
+// Lists
+// =============================================================================
+
+
+// Horizontal Inline Block
+// =====================================
+
+.mix-list-inline(
+  @pad-top: 0, 
+  @pad-right: 0, 
+  @pad-btm: 0, 
+  @pad-left: 0, 
+  @align: left, 
+  @list-type: none
+  ) when (@list-type = none) {
+  ul { text-align: @align; }
+  li { 
+    display: inline-block; 
+    padding: @pad-top @pad-right @pad-btm @pad-left;
+  }
+}
+// When using on links
+.mix-list-inline(@pad-top: 0, @pad-right: 0, @pad-btm: 0, @pad-left: 0, @align: left, @list-type: none) when (@list-type = links) {
+  ul { text-align: @align; }
+  li { 
+    display: inline-block; 
+    text-align: center;
+    padding: 0;
+    a { 
+      padding: @pad-top @pad-right @pad-btm @pad-left; 
+      display: block;
+    }
+  }
+}
+
+// Horizontal Float
+// =====================================
+
+.mix-list-float(
+  @pad-top: 0, 
+  @pad-right: 0, 
+  @pad-btm: 0, 
+  @pad-left: 0, 
+  @align: left, 
+  @list-type: none, 
+  @width: auto, 
+  @parent-display: inline-block
+  ) when (@list-type = none) {
+  text-align: @align;
+  ul { 
+    display: @parent-display;
+    .cf;
+  }
+  li { 
+    text-align: center;
+    padding: @pad-top @pad-right @pad-btm @pad-left;
+    float: left;
+    width: @width;
+  }
+}
+// When using on links
+.mix-list-float(
+  @pad-top: 0, 
+  @pad-right: 0, 
+  @pad-btm: 0, 
+  @pad-left: 0, 
+  @align: left, 
+  @list-type: none, 
+  @width: auto, 
+  @parent-display: inline-block
+  ) when (@list-type = links) {
+
+  text-align: @align; 
+  ul { 
+    display: @parent-display; 
+    .cf;
+  }
+  li {
+    float: left;
+    width: @width;
+    text-align: center;
+    a { 
+      padding: @pad-top @pad-right @pad-btm @pad-left; 
+      display: block;
+    }
+  }
+}

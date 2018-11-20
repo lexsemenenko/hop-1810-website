@@ -1,0 +1,19 @@
+{{ define "hero" }}
+  <h1 class="hero__title h1">Дом молитвы для <em>всех</em></h1>
+  <p class="hero__subtitle t-upper">Славянская христианская церковь<br>PITTSBURGH, PA</p>
+{{ end }}
+
+
+{{ define "content" }}
+  <div class="content__intro">
+    <h2 class="h2">Проповеди</h2>
+    {{ .Params.intro }}
+  </div>
+  <ul class="sermon-list">
+    {{ range where .Pages "Section" "sermon" }}
+      {{ partial "preprocess/loop-sermon.html" . }}
+    {{ end }}
+  </ul>
+
+
+{{ end }}
