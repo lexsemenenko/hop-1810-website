@@ -1,14 +1,14 @@
+{{ $var := .Scratch }}
+{{ partial "preprocess/sermon.html" . }}
+{{ $preprocess_sermon := $var.Get "preprocess_sermon" }}
+{{ $name_sermon := $preprocess_sermon.name_sermon }}
+{{ $sermon_date := $preprocess_sermon.sermon_date }}
+{{ $name_speaker := $preprocess_sermon.name_speaker }}
 
-  {{ $var := .Scratch }}
-  {{ partial "preprocess/sermon.html" . }}
-  {{ $preprocess_sermon := $var.Get "preprocess_sermon" }}
-  {{ $name_sermon := $preprocess_sermon.name_sermon }}
-  {{ $sermon_date := $preprocess_sermon.sermon_date }}
-  {{ $name_speaker := $preprocess_sermon.name_speaker }}
-
-  <li class="sermon-list__item">
+<div data-grid-item="width: 6, width-medium: 4">
+  <div class="sermon-list__item">
     <div class="sermon-list__meta">
-     {{ $sermon_date }}
+    {{ $sermon_date }}
     </div>
     <div class="sermon-list__header">
       <h3 class="sermon-list__title">{{ $name_sermon }}</h3>
@@ -19,4 +19,5 @@
     <div class="sermon-list__footer">
       <a class="btn" href="{{.Permalink}}">Слушать</a>
     </div>
-  </li>
+  </div>
+</div>

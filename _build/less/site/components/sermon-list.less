@@ -3,13 +3,22 @@
 // =============================================================================
 
 .sermon-list {
-  lost-center: @site-max-width * 0.6;
+  // lost-center: @site-max-width * 0.6;
 
   &__item {
     margin-bottom: @element-margin;
-    background-color: #f1f1f1;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+    box-shadow: 3px 5px 30px 0 rgba(0,0,0,0.15);
     border-radius: 3px;
+    height: 100%;
+    position: relative;
+    padding-bottom: 65px;
+    transition: all .3s cubic-bezier(.2, .5, .3, 1);
+    border-top: 4px solid transparent;
+    // &:hover {
+    //   border-color: #6852ED;
+    //   transform: translateY(-5px);
+    //   box-shadow: 0 30px 65px rgba(0,0,0,0.12);
+    // }
   }
   &__header {
     padding: (@base-medium/2) @base-medium;
@@ -25,7 +34,10 @@
   &__footer {
     border-top: 1px solid @color-black-15;
     padding: @base-medium/2 @base-medium;
-    background-color: @color-black-7;
+    background-color: @color-black-3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
   &__meta {
     .t-small;

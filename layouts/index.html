@@ -9,11 +9,11 @@
     <h2 class="h2">Проповеди</h2>
     {{ .Params.intro }}
   </div>
-  <ul class="sermon-list">
+
+  <div class="sermon-list" data-grid="columns: 12, gutters-row: true">
     {{ range where .Pages "Section" "sermon" }}
       {{ partial "preprocess/loop-sermon.html" . }}
     {{ end }}
-  </ul>
-
+  </div>
 
 {{ end }}

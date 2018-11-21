@@ -9,11 +9,11 @@
     {{ .Params.intro }}
   </div>
 
-  <ul class="sermon-list">
+  <div class="sermon-list" data-grid="columns: 12, gutters-row: true">
     {{ range (.Paginator 10).Pages }}
       {{ partial "preprocess/loop-sermon.html" . }}
     {{ end }}
-  </ul>
+  </div>
 
   {{ template "_internal/pagination.html" . }}
   

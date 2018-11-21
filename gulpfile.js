@@ -12,6 +12,7 @@ var exec = require('child_process').exec,
   postcssPresetEnv = require("postcss-preset-env"),
   autoprefixer = require('autoprefixer'),
   lost = require('lost'),
+  lessLists = require('less-plugin-lists'),
 
   // JS
   eslint = require("gulp-eslint"),
@@ -104,7 +105,9 @@ function css() {
   return gulp
     .src(paths.src.css)
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
-    .pipe(less())
+    .pipe(less({
+      plugins: [(new lessLists)]
+    }))
     .pipe(postcss(postcssPlugins))
     .pipe(gulp.dest(paths.dest.css))
     .pipe(browsersync.stream());

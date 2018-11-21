@@ -1,0 +1,12 @@
+#DG.create(
+  @columns:                   12,
+  @breakpoint:                @tablet-up,
+  @optional: {
+
+    #DG.breakpoint(
+      @suffix:                "medium", 
+      @gutter:                40px,
+      @breakpoint:            @desktop-up
+    );
+  }
+);
