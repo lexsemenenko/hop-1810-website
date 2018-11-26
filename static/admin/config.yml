@@ -44,7 +44,15 @@ collections: # A list of collections the CMS should be able to edit
           widget: "select",
           options: ["Ru", "En"],
         }
-      - { label: "Person ID", name: "person_id", widget: "string" }
+      - {
+          label: "Person ID",
+          name: "person_id",
+          widget: "relation",
+          collection: "people",
+          searchFields: ["title"],
+          valueField: "person_id",
+          displayFields: ["title", "person_id"],
+        }
       - { label: "Intro", name: "intro", widget: "markdown", required: false }
       - { label: "Body", name: "body", widget: "markdown", required: false }
 
