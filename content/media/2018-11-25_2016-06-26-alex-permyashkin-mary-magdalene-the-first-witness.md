@@ -1,5 +1,7 @@
 ---
-title: '2016-06-26 Alex Permyashkin - Mary Magdalene: The First Witness'
+title: >-
+  2016-06-26 - Audio Sermon - Alex Permyashkin - Mary Magdalene: The First
+  Witness
 date: 2016-06-26T23:04:00.000Z
 media_id: 8T4dFvDs
 url_audio: >-
