@@ -6,14 +6,19 @@
 
 {{ define "content" }}
   <div class="content__intro">
-    <h2 class="h2">Проповеди</h2>
+    <h2 class="h2">Последние проповеди</h2>
     {{ .Params.intro }}
   </div>
 
   <div class="sermon-list" data-grid="columns: 12, gutters-row: true">
-    {{ range where .Pages "Section" "sermon" }}
+    {{ range first 3 (where .Pages "Section" "sermon") }}
       {{ partial "preprocess/loop-sermon.html" . }}
     {{ end }}
+  </div>
+  <div data-grid="columns: 12, gutters-row: true">
+    <div class="t-center" data-grid-item="width: 12">
+      <a href="/sermon/" class="btn">Все проповеди</a>
+    </div>
   </div>
 
 {{ end }}
