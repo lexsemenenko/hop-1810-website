@@ -53,6 +53,10 @@
                 <p>hofp.us @ gmail.com</p>
               </div>
               <div class="col-l-6 col-3">
+                <h3>Меню</h3>
+                <nav class="site-footer__nav">
+                  {{ partial "menu/menu--footer.html" (dict "menu" .Site.Menus.footer "currentNode" . "loopCount" 1) }}
+                </nav>
               </div>
               <div class="col-l-6 col-3">
               </div>

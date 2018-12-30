@@ -17,15 +17,15 @@ Params:
 <ul class="{{ $classname }}__menu {{ $classname }}__menu--lev-{{ $loopCount }}">
   {{ range $index, $element := .menu -}}
 
-    {{ $isCurrent := $currentNode.IsMenuCurrent "main" . -}}
-    {{ $hasCurrent := $currentNode.HasMenuCurrent "main" . -}}
+    {{ $isCurrent := $currentNode.IsMenuCurrent "footer" . -}}
+    {{ $hasCurrent := $currentNode.HasMenuCurrent "footer" . -}}
     {{ $classes := print $item " " (cond $isCurrent (print $item "--active ") "") (cond $hasCurrent (print $item "--has-active ") "") (cond .HasChildren (print $item "--has-children ") "") $item "--lev-" $loopCount -}}
     {{ $classesLink := print $link " " (cond $isCurrent (print $link "--active ") "") (cond $hasCurrent (print $link "--has-active ") "") (cond .HasChildren (print $link "--has-children ") "") $link "--lev-" $loopCount -}}
 
     <li id="{{ $classname }}-{{ $index  }}" class="{{ $classes }}">
       <a href="{{ .URL | safeURL }}" class="{{ $classesLink }}">{{ .Name }}</a>
         {{ if and .HasChildren $withChildren -}}
-          {{ partial "menu/menu--main.html" (dict "menu" .Children "currentNode" $currentNode "loopCount" (add 1 $loopCount) "classname" $classname) -}}
+          {{ partial "menu/menu--footer.html" (dict "menu" .Children "currentNode" $currentNode "loopCount" (add 1 $loopCount) "classname" $classname) -}}
         {{ end -}}
       </li>
   {{end}} 
