@@ -1,30 +1,29 @@
 
-var exec = require('child_process').exec,
+const exec = require('child_process').exec;
 
   // Gulp Functionality Related
-  gulp = require("gulp"),
-  del = require("del"),
-  plumber = require('gulp-plumber'),
+  const gulp = require("gulp");
+  const del = require("del");
+  const plumber = require('gulp-plumber');
 
   // CSS
-  less = require("gulp-less"),
-  postcss = require("gulp-postcss"),
-  postcssPresetEnv = require("postcss-preset-env"),
-  autoprefixer = require('autoprefixer'),
-  lost = require('lost'),
-  lessLists = require('less-plugin-lists'),
+  const less = require("gulp-less");
+  const postcss = require("gulp-postcss");
+  const postcssPresetEnv = require("postcss-preset-env");
+  const autoprefixer = require('autoprefixer');
+  const lessLists = require('less-plugin-lists');
 
   // JS
-  eslint = require("gulp-eslint"),
-  preprocess = require("gulp-preprocess"),
+  const eslint = require("gulp-eslint");
+  const preprocess = require("gulp-preprocess");
 
   // Other
-  browsersync = require("browser-sync").create(),
-  notify = require("gulp-notify"),
+  const browsersync = require("browser-sync").create();
+  const notify = require("gulp-notify");
 
   // Image
-  imagemin = require("gulp-imagemin"),
-  newer = require("gulp-newer");
+  const imagemin = require("gulp-imagemin");
+  const newer = require("gulp-newer");
 
 
 function browserSync() {
@@ -91,7 +90,6 @@ function clean() {
 function css() {
 
   var postcssPlugins = [
-    lost,
     autoprefixer({
       enabled: true,
       options: {
