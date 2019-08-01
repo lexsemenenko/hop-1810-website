@@ -25,37 +25,43 @@ const sourcemaps = require('gulp-sourcemaps');
 // Image
 const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
+const svgSprite = require('gulp-svg-sprite');
 
 const paths = {
   src: {
     css: "./_src/less/styles.less",
     js: "./_src/js/scripts.js",
     images: "./_src/images/**/*",
+    svg: "./_src/svg/*.svg",
     html: [
       'public/**/*.html',
       '!public/js/**/*',
       '!public/css/**/*',
       '!public/files/**/*',
       '!public/fonts/**/*',
-      '!public/images/**/*'
+      '!public/images/**/*',
+      '!public/svg/**/*'
     ]
   },
   dest: {
     css: "./public/",
     js: "./public/js/",
     html: "./public/",
-    images: "./public/images/"
+    images: "./public/images/",
+    svg: "./public/svg/"
   },
   del: {
-    css: "./public/",
+    css: "./public/*.css",
     js: "./public/js/",
     images: "./public/images/",
-    html: "public"
+    svg: "./public/svg/",
+    html: "public",
   },
   watch: {
     css: "./_src/less/**/*",
     js: "./_src/js/**/*",
     images: "./_src/images/**/*",
+    svg: "./_src/svg/*",
     html: [
       "./layouts/**/*",
       "./content/**/*"
@@ -86,7 +92,13 @@ function clean() {
     paths.del.css,
     paths.del.js,
     paths.del.images,
-    paths.del.html
+    paths.del.html,
+    paths.del.svg
+  ]);
+}
+function cleanSVG() {
+  return del([
+    paths.del.svg
   ]);
 }
 
@@ -151,11 +163,25 @@ function images() {
     .pipe(dest(paths.dest.images));
 }
 
+// Task: SVG
+function svg() {
+  return src(paths.src.svg)
+  .pipe(svgSprite(svgSettings))
+  .pipe(dest(paths.dest.svg));
+}
+
+function svgCopyCSS() {
+  return src('./public/svg/css/*.css')
+  .pipe(rename('sprite.less'))
+  .pipe(dest('./_src/less/generated/'));
+}
+
 // Task: Watch
 function taskWatch(cb) {
   watch(paths.watch.css, series(css, injectCSS));
   watch(paths.watch.js, series(jsDev, reloadPage));
   watch(paths.watch.images, series(images, reloadPage));
+  watch(paths.watch.svg, series(cleanSVG, svg, svgCopyCSS, css));
   watch(paths.watch.html, series(hugo, reloadPage));
   cb();
 }
@@ -163,21 +189,25 @@ function taskWatch(cb) {
 // Public Tasks
 // =====================================
 
+// exports.svg = svg;
+// exports.svgCopyCSS = svgCopyCSS;
+exports.clean = clean;
+
 // Task: Build
 exports.build = series(
   clean,
-  parallel(css, jsProd, hugo, images),
+  parallel(series(svg, svgCopyCSS, css), jsProd, hugo, images),
 );
 
 // Task: Watch
 exports.watch = series(
   clean,
-  parallel(css, jsDev, hugo, images),
+  parallel(series(svg, svgCopyCSS, css), jsDev, hugo, images, svg),
   parallel(taskWatch, browserSync)
 );
 
 // =============================================================================
-// Helpers & Settings
+// Helpers Function & Package Settings
 // =============================================================================  
 
 // Post CSS settings
@@ -192,9 +222,24 @@ const postcssSettings = [
   postcssPresetEnv()
 ]
 
-// Returns string setting for autoprifexer
+// Autoprifexer, returns string for browser support
 function browsersYearsBack(years) {
   return (
     "since " + (new Date().getFullYear() - years || "2010")
   );
 }
+
+// SVG Settings
+svgSettings = {
+  mode: {
+    css: {
+      sprite: 'svg/sprite.svg', // renamed to remove .css from filename
+      dimensions: "--ratio",
+      render: {
+        css: {
+          template: './gulp/templates/sprite.css',
+        }
+      }
+    }
+  }
+};
