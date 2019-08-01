@@ -63,6 +63,7 @@ const paths = {
   }
 };
 
+//Task: Server
 function browserSync(cb) {
   browsersync.init({
     server: {
@@ -73,11 +74,13 @@ function browserSync(cb) {
   cb();
 }
 
+// Task: Reload Page
 function reloadPage(cb) {
   browsersync.reload();
   cb();
 }
 
+// Task: Clean
 function clean() {
   return del([
     paths.del.css,
@@ -87,6 +90,7 @@ function clean() {
   ]);
 }
 
+// Task: CSS
 function css() {
   return src(paths.src.css)
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
@@ -97,12 +101,13 @@ function css() {
     .pipe(dest(paths.dest.css))
 }
 
+// Task: Inject CSS
 function injectCSS() {
   return src('./public/styles.css')
     .pipe(browsersync.stream());
 }
 
-// Task: JS
+// Task: JS Deveopment
 function jsDev(cb) {
   webpack(webpack_dev, (err, stats) => {
     if(err) {
@@ -112,18 +117,22 @@ function jsDev(cb) {
     cb(); // So gulp can be certain webpack completed
   });
 }
+
+// Task: JS Production
 function jsProd(cb) {
   webpack(webpack_prod, (err, stats) => {
     cb();
   });
 }
 
+// Task: HTML
 function html() {
   return src(paths.src.html)
     .pipe(dest(paths.dest.html))
     .pipe(browsersync.stream());
 }
 
+// Task: Hugo
 function hugo(cb) {
   exec('hugo', function (err, stdout, stderr) {
     console.log('\n-------- Hugo output--------\n');
@@ -134,6 +143,7 @@ function hugo(cb) {
   });
 }
 
+// Task: Images
 function images() {
   return src(paths.src.images)
     .pipe(newer(paths.dest.images))
@@ -141,19 +151,25 @@ function images() {
     .pipe(dest(paths.dest.images));
 }
 
+// Task: Watch
 function taskWatch(cb) {
   watch(paths.watch.css, series(css, injectCSS));
   watch(paths.watch.js, series(jsDev, reloadPage));
-  watch(paths.watch.images, images);
-  watch(paths.watch.html, hugo);
+  watch(paths.watch.images, series(images, reloadPage));
+  watch(paths.watch.html, series(hugo, reloadPage));
   cb();
 }
 
+// Public Tasks
+// =====================================
+
+// Task: Build
 exports.build = series(
   clean,
   parallel(css, jsProd, hugo, images),
 );
 
+// Task: Watch
 exports.watch = series(
   clean,
   parallel(css, jsDev, hugo, images),
