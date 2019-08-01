@@ -1,51 +1,36 @@
-
+const { dest, src, task, series, parallel, watch } = require('gulp');
+const browsersync = require("browser-sync").create();
 const exec = require('child_process').exec;
 
-  // Gulp Functionality Related
-  const gulp = require("gulp");
-  const del = require("del");
-  const plumber = require('gulp-plumber');
+// Utilities
+const del = require("del");
+const notify = require("gulp-notify");
+const rename = require('gulp-rename');
 
-  // CSS
-  const less = require("gulp-less");
-  const postcss = require("gulp-postcss");
-  const postcssPresetEnv = require("postcss-preset-env");
-  const autoprefixer = require('autoprefixer');
-  const lessLists = require('less-plugin-lists');
+// JS
+const webpack = require('webpack');
+const webpack_dev = require('./webpack.dev');
+const webpack_prod = require('./webpack.prod');
 
-  // JS
-  const eslint = require("gulp-eslint");
-  const preprocess = require("gulp-preprocess");
+// CSS
+const less = require("gulp-less");
+const postcss = require("gulp-postcss");
+const postcssPresetEnv = require("postcss-preset-env");
+const autoprefixer = require('autoprefixer');
+const lessLists = require('less-plugin-lists');
+const plumber = require('gulp-plumber');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
 
-  // Other
-  const browsersync = require("browser-sync").create();
-  const notify = require("gulp-notify");
+// Image
+const imagemin = require("gulp-imagemin");
+const newer = require("gulp-newer");
 
-  // Image
-  const imagemin = require("gulp-imagemin");
-  const newer = require("gulp-newer");
-
-
-function browserSync() {
-  browsersync.init({
-    server: {
-      baseDir: "./public/"
-    },
-    port: 3000
-  });
-}
-
-// BrowserSync Reload (callback)
-// function browserSyncReload(done) {
-//   browsersync.reload();
-//   done();
-// }
-
-var paths = {
+const paths = {
   src: {
-    css: "./_build/less/styles.less",
-    js: "./_build/js/scripts.js",
-    images: "./_build/images/**/*",
+    css: "./_src/less/styles.less",
+    js: "./_src/js/scripts.js",
+    images: "./_src/images/**/*",
     html: [
       'public/**/*.html',
       '!public/js/**/*',
@@ -68,15 +53,30 @@ var paths = {
     html: "public"
   },
   watch: {
-    css: "./_build/less/**/*",
-    js: "./_build/js/**/*",
-    images: "./_build/images/**/*",
+    css: "./_src/less/**/*",
+    js: "./_src/js/**/*",
+    images: "./_src/images/**/*",
     html: [
       "./layouts/**/*",
       "./content/**/*"
     ]
   }
 };
+
+function browserSync(cb) {
+  browsersync.init({
+    server: {
+      baseDir: "./public/"
+    },
+    port: 3000
+  });
+  cb();
+}
+
+function reloadPage(cb) {
+  browsersync.reload();
+  cb();
+}
 
 function clean() {
   return del([
@@ -88,66 +88,40 @@ function clean() {
 }
 
 function css() {
-
-  var postcssPlugins = [
-    autoprefixer({
-      enabled: true,
-      options: {
-        remove: false,
-        browsers: [browsersYearsBack(8), "not dead"]
-      }
-    }),
-    postcssPresetEnv()
-  ]
-
-  return gulp
-    .src(paths.src.css)
+  return src(paths.src.css)
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(less({
       plugins: [(new lessLists)]
     }))
-    .pipe(postcss(postcssPlugins))
-    .pipe(gulp.dest(paths.dest.css))
+    .pipe(postcss(postcssSettings))
+    .pipe(dest(paths.dest.css))
+}
+
+function injectCSS() {
+  return src('./public/styles.css')
     .pipe(browsersync.stream());
 }
 
-function jsESlint() {
-  return gulp
-    .src(paths.src.js)
-    .pipe(plumber())
-    .pipe(eslint({ configFile: "eslintrc.json" }))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+// Task: JS
+function jsDev(cb) {
+  webpack(webpack_dev, (err, stats) => {
+    if(err) {
+      console.log(err.toString());
+    }
+    console.log(stats.toString());
+    cb(); // So gulp can be certain webpack completed
+  });
 }
-
-function js() {
-  return gulp
-    .src(paths.src.js)
-    .pipe(preprocess())
-    .pipe(plumber())
-    .pipe(gulp.dest(paths.dest.js))
-    .pipe(browsersync.stream());
+function jsProd(cb) {
+  webpack(webpack_prod, (err, stats) => {
+    cb();
+  });
 }
 
 function html() {
-  return gulp
-    .src(paths.src.html)
-    .pipe(gulp.dest(paths.dest.html))
+  return src(paths.src.html)
+    .pipe(dest(paths.dest.html))
     .pipe(browsersync.stream());
-}
-
-// Optimize Images
-function images() {
-  return gulp
-    .src(paths.src.images)
-    .pipe(newer(paths.dest.images))
-    .pipe(
-      imagemin({
-        progressive: true,
-        svgoPlugins: [{ removeViewBox: false }]
-      })
-    )
-    .pipe(gulp.dest(paths.dest.images));
 }
 
 function hugo(cb) {
@@ -160,28 +134,49 @@ function hugo(cb) {
   });
 }
 
-function watch() {
-  gulp.watch(paths.watch.css, css);
-  gulp.watch(paths.watch.js, js);
-  gulp.watch(paths.watch.images, images);
-  gulp.watch(paths.watch.html, hugo);
+function images() {
+  return src(paths.src.images)
+    .pipe(newer(paths.dest.images))
+    // .pipe(imagemin())
+    .pipe(dest(paths.dest.images));
 }
 
+function taskWatch(cb) {
+  watch(paths.watch.css, series(css, injectCSS));
+  watch(paths.watch.js, series(jsDev, reloadPage));
+  watch(paths.watch.images, images);
+  watch(paths.watch.html, hugo);
+  cb();
+}
 
-gulp.task('hugo', gulp.series(hugo));
-gulp.task("clean", clean);
-gulp.task("css", css);
-gulp.task("images", images);
-gulp.task("js", gulp.series(jsESlint, js, function (done) { done(); }));
-gulp.task("build", gulp.series(clean, gulp.parallel(css, js, images, hugo)));
-gulp.task("watch", gulp.series("build", gulp.parallel(watch, browserSync)));
-gulp.task("default", gulp.series('watch', function (done) { done(); }));
+exports.build = series(
+  clean,
+  parallel(css, jsProd, hugo, images),
+);
 
+exports.watch = series(
+  clean,
+  parallel(css, jsDev, hugo, images),
+  parallel(taskWatch, browserSync)
+);
 
 // =============================================================================
-// Functions Addons
+// Helpers & Settings
 // =============================================================================  
 
+// Post CSS settings
+const postcssSettings = [
+  autoprefixer({
+    enabled: true,
+    options: {
+      remove: false,
+      browsers: [browsersYearsBack(8), "not dead"]
+    }
+  }),
+  postcssPresetEnv()
+]
+
+// Returns string setting for autoprifexer
 function browsersYearsBack(years) {
   return (
     "since " + (new Date().getFullYear() - years || "2010")

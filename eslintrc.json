@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "curly": "error",
+    "quotes": ["error", "double"]
+  }
+}

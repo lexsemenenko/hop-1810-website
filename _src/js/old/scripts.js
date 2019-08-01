@@ -35,4 +35,5 @@ var lexkit = function () {
 
 $(document).ready(function () {
   lexkit();
+  console.log('test');
 });
