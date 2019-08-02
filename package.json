@@ -36,5 +36,7 @@
     "webpack-cli": "^3.3.6",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
 }

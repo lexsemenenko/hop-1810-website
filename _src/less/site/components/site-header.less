@@ -3,20 +3,26 @@
   background-color: @gray-dark-xxx;
   a {
     color: white;
+    display: inline-block;
   }
   &__logo {
     width: 30%;
     float: left;
+    padding-top: 7px;
+    .cf;
     h2 {
-      .mix-img-url("global/logo.png");
-      margin-top: 7px;
-      width: 28px;
-      height: 28px;
-      background-repeat: no-repeat;
-      padding-left: 34px;
       font-size: 18px;
       font-weight: bold;
       line-height: 28px;
+      float: left;
+    }
+    .icon {
+      width: 28px;
+      width: 1.75rem;
+      height: 28px;
+      height: 1.75rem;
+      margin-right: 4px;
+      float: left;
     }
   }
   &__nav {

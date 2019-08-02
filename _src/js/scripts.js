@@ -1,3 +1,8 @@
-import Test from './modules/test.js';
+import DropDown from './modules/DropDown';
 
-console.log(Test.name);
+const dropdown = new DropDown({
+  block: ".menu-mobile",
+  toggle: ".menu-mobile__toggle",
+  content: ".menu-mobile__content",
+});
+ 

@@ -11,10 +11,27 @@
       <nav class="section__content">
         <div class="site-header__logo">
           <a href="/">
-            <h2><span class="hide-v">House of Prayer for All </span>hofp.us</h2>
+            <span class="icon icon--logo"></span>
+            <h2><span class="hide-v">House of Prayer for All</span>HOFP.US</h2>
           </a>
         </div>
         <nav class="site-header__nav">
+          <div class="menu-mobile">
+            <button class="menu-mobile__toggle">
+              Menu
+            </button>
+            <div class="menu-mobile__content">
+              Menu content
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown__toggle">
+              Dropdown Toggle
+            </button>
+            <div class="dropdown__content">
+              Dropdown Content
+            </div>
+          </div>
           {{ block "menu-main" . }}
             {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
           {{ end }}
