@@ -1,22 +1,24 @@
 import $ from 'jquery';
 
-class DropDown {
-  constructor(settings) {
-    const { block, toggle, content } = settings;
+class Dropdown {
+  constructor(instanceSettings) {
+  
+    const {block, toggle, content } = instanceSettings;
+
     this.block = block ? $(block) : $('.dropdown');
-    this.menuToggle = $('.menu-mobile__toggle');
-    this.menuContent = $('.menu-mobile__content');
-    this.menuEvents(); // Call our events
-    console.log(this.block)
+    this.blockToggle = toggle ? $(toggle) : $('.dropdown__toggle');
+    this.blockContent = content ? $(content) : $('.dropdown__content');
+    this.menuEvents();
   }
   menuEvents() {
-    this.menuToggle.click(this.toggleMenu.bind(this));
+    this.blockToggle.click(this.toggleMenu.bind(this));
   }
   toggleMenu () {
-    this.block.toggleClass("open");
-    this.menuToggle.toggleClass("open");
-    this.menuContent.toggleClass("open");
+    this.block
+      .add(this.blockToggle)
+      .add(this.blockContent)
+      .toggleClass("open");
   }
 }
 
-export default DropDown;
+export default Dropdown;

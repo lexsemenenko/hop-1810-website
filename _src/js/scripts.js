@@ -1,8 +1,9 @@
-import DropDown from './modules/DropDown';
+import Dropdown from './modules/Dropdown';
 
-const dropdown = new DropDown({
+const dropdown = new Dropdown();
+const mobileMenu = new Dropdown({
   block: ".menu-mobile",
   toggle: ".menu-mobile__toggle",
-  content: ".menu-mobile__content",
+  content: ".menu-mobile__content"
 });
  
