@@ -2,21 +2,32 @@ import $ from 'jquery';
 
 class Dropdown {
   constructor(instanceSettings) {
-  
-    const {block, toggle, content } = instanceSettings;
 
-    this.block = block ? $(block) : $('.dropdown');
-    this.blockToggle = toggle ? $(toggle) : $('.dropdown__toggle');
-    this.blockContent = content ? $(content) : $('.dropdown__content');
+    // Note: If undefined, make an object, so descruturing doesn't fail.
+    const s = instanceSettings || {};
+
+    // Desructure with defaults
+    const {
+      block = '.dropdown',
+      toggle = '.dropdown__toggle',
+      content = '.dropdown__content',
+    } = s;
+
+    this.block = $(block);
+    this.toggle = $(toggle);
+    this.content = $(content);
+
     this.menuEvents();
   }
+  
   menuEvents() {
-    this.blockToggle.click(this.toggleMenu.bind(this));
+    this.toggle.click(this.toggleMenu.bind(this));
   }
+
   toggleMenu () {
     this.block
-      .add(this.blockToggle)
-      .add(this.blockContent)
+      .add(this.toggle)
+      .add(this.content)
       .toggleClass("open");
   }
 }
