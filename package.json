@@ -37,6 +37,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "plyr": "^3.5.6"
   }
 }
