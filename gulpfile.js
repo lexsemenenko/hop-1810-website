@@ -196,7 +196,7 @@ exports.clean = clean;
 // Task: Build
 exports.build = series(
   clean,
-  parallel(series(svg, svgCopyCSS, css), jsProd, hugo, images),
+  parallel(series(svg, svgCopyCSS, css), jsProd, hugo, images, svg),
 );
 
 // Task: Watch
