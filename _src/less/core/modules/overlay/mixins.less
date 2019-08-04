@@ -1,0 +1,195 @@
+#OVERLAY() {
+
+  .toggle(@background-color,
+  @background-alpha,
+  @background-alpha-offset,
+  @color ) {
+
+    // Defaults
+    .overlay {
+      display: block;
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+
+      .hook--overlay();
+    }
+
+    .overlay--toggle {
+      //background-color: @background-color;
+    }
+
+    .overlay__toggle {
+      color: @color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 100%;
+      #COLOR.bg-rgba(@color-blue-dark, 0.05, 0.2);
+      transition: 0.3 ws ease-out;
+      transition-property: background-color, box-shadow, height, right;
+
+      &:hover {
+        #COLOR.bg-rgba(@color-blue-dark, 0.15, 0.3);
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      .hook--overlay__toggle();
+    }
+
+    .overlay__content {
+      #COLOR.bg-rgba(@background-color, @background-alpha, @background-alpha-offset);
+      color: @color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+
+      &[data-collapsible*="open: false"] {
+        visibility: hidden;
+      }
+
+      &[data-collapsible*="open: true"] {
+        display: visible;
+      }
+
+      .hook--overlay__content();
+    }
+  }
+}
+
+// =============================================================================
+// Vars
+// =============================================================================
+
+
+// =============================================================================
+// Call
+// =============================================================================
+
+#OVERLAY.toggle(@background-color: white,
+@background-alpha: 1,
+@background-alpha-offset: 0,
+@color: @t-base-color);
+
+.hook--overlay() {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, .03), 8px 28px 56px rgba(0, 0, 0, .05);
+  transition: transform .3s ease-in-out;
+
+  &:hover {
+    box-shadow: 2px 3px 6px rgba(0, 0, 0, .03), 5px 15px 32px rgba(0, 0, 0, .05);
+  }
+}
+
+.hook--overlay__toggle() {
+  text-align: center;
+  transition: 0.3s ease-out;
+  transition-property: background-color, box-shadow, height, right;
+  #COLOR.bg-rgba(@color-blue-dark, 0.05, 0.2);
+
+  span {
+    .hide-v();
+  }
+
+  &:after {
+    transition: 0.3s ease-out;
+    transition-property: opacity, transform;
+    opacity: 0;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 55px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background-image: url('/images/icon-plus.svg');
+    background-position-x: 50%;
+    background-repeat: repeat-y;
+    color: white;
+
+    path {
+      fill: white;
+    }
+  }
+
+  &:hover {
+    #COLOR.bg-rgba(black, 0.4, 0.3);
+
+    &:after {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &[data-collapsible*="open: false"] {}
+
+  &[data-collapsible*="open: true"] {}
+}
+
+
+.hook--overlay__content() {
+  padding: @base-medium;
+
+  &[data-collapsible*="open: false"] {}
+
+  &[data-collapsible*="open: true"] {
+    z-index: 3;
+  }
+}
+
+.overlay__content[data-collapsible*="open: true"] {
+  animation: overlayFadeIn 0.25s ease-in;
+  animation-fill-mode: forwards;
+}
+
+.overlay__content[data-collapsible*="open: false"] {
+  animation: overlayFadeOut 0.25s ease-in;
+  animation-fill-mode: forwards;
+}
+
+
+// Animation
+// =============================================================================  
+
+@keyframes overlayFadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  1% {
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes overlayFadeOut {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  99% {
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

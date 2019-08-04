@@ -1,0 +1,57 @@
+// =============================================================================
+// Mixins: Forms
+// =============================================================================
+
+// Description:     Mixins to build forms
+
+// Version:         1.0.0
+
+
+// Text field
+// =============================================================================
+
+#FORM() {
+
+  .input-text(@height,
+  @line-height: 1.3em,
+  @bg-color: white,
+  @font-color,
+  @font-size: @t-base,
+  @border-width: 0,
+  @border-color: white,
+  @border-color--focus: @form-brd-color--focus,
+  @border-radius: 0,
+  @indent: 6px,
+  @width: 100%,
+  @pad-h: @form-element-padding-horizontal ) {
+    // .mix-text(
+    //   @size: @t-base
+    // );
+    -webkit-appearance: none; // ios and webkit
+    -moz-appearance: none; // Mozilla
+    appearance: none; // IE 10
+    -webkit-border-radius: @border-radius;
+    -moz-border-radius: @border-radius;
+    border-radius: @border-radius;
+    width: @width;
+    max-width: 100%; // Protect Against text area resizing
+    height: @height;
+    background: @bg-color;
+    border-width: @border-width;
+    border-style: solid;
+    border-color: @border-color;
+    font-weight: normal;
+    font-family: @t-family-base;
+    color: @font-color;
+    text-indent: @indent;
+    outline: 0; // Remove outline
+    text-overflow: ellipsis;
+    line-height: @line-height;
+    padding-left: @pad-h;
+    padding-right: @pad-h;
+
+    &:focus {
+      border-color: @border-color--focus;
+    }
+  }
+}

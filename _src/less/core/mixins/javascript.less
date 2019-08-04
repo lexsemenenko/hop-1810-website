@@ -1,0 +1,85 @@
+// =============================================================================
+// Mixins: JavaScript
+// =============================================================================
+
+// Version:         1.0.0
+
+// Description:     Mixins to help in Javascript
+
+
+
+#JS() {
+
+  // Used to pass values to a javscript for breakpoints in css
+  // Note direction is for upward or downward media queries,
+  // up = before, down = after
+  .breakpoint(@breakpoint,
+  @content,
+  @alternate: false,
+  @element: false) {
+
+    @selectorEscaped: e(@element);
+
+    // Default (body)
+    // =====================================
+
+    body when (@element =false) {
+      & when (@flag--js-breakpoint--init =false) {
+
+        @flag--js-breakpoint--init: true;
+
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+
+      @media @breakpoint {
+        & when (@alternate =false) {
+          &:before {
+            content: @content;
+          }
+        }
+
+        & when (@alternate =true) {
+          &:after {
+            content: @content;
+          }
+        }
+      }
+    }
+
+    // Custom Element
+    // =====================================
+
+    @{selectorEscaped} when not (@element =false) {
+      & when (@flag--js-breakpoint--init =false) {
+
+        @flag--js-breakpoint--init: true;
+
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+
+      @media @breakpoint {
+        & when (@alternate =false) {
+          &:before {
+            content: @content;
+          }
+        }
+
+        & when (@alternate =true) {
+          &:after {
+            content: @content;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Had to be outside of the namespace, not sure why but the
+// name is unique so moved on...
+@flag--js-breakpoint--init: false;

@@ -1,0 +1,23 @@
+// =============================================================================
+// Mixins: Calculations
+// =============================================================================
+
+// Description:     Mixins that return a value
+
+// Version:         1.0.0
+
+#CALC() {
+  .em(@font-size, @size-to-compare) {
+    & when (ispixel(@size-to-compare)=true) {
+      return: unit((@size-to-compare / @font-size), em);
+    }
+
+    & when (isem(@size-to-compare)=true) {
+      return: @size-to-compare;
+    }
+  }
+
+  .rem(@font-size) when (ispixel(@font-size)=true) {
+    return: unit((@font-size / @t-base), rem);
+  }
+}

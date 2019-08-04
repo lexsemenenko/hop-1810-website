@@ -1,14 +1,23 @@
-/*
-
-===========================================================================
-Base: Typography
-===========================================================================
-
+/* =============================================================================
+Core => Base => Typography
+// ============================================================================= 
+ 
 Version:            1.0.0
-
+Changes:            1.0.0 | ...
 */
 
-h1, h2, h3, h4, h5, h6, ul, li, p, ol, pre, code { 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+pre,
+code,
+p {
   margin: 0;
   padding: 0;
   font-size: inherit;
@@ -17,33 +26,89 @@ h1, h2, h3, h4, h5, h6, ul, li, p, ol, pre, code {
   border-style: solid;
   font-weight: inherit;
 }
+
 p {
-  // .mix-text-size('base', true); 
+  margin-bottom: @t-base-lh * @t-margin-multiplier;
 }
-sub, sup {
+
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-small { 
-  // .mix-text-size("small", true); 
+
+small {
+  #TYPE.createSize("small", true);
 }
-sub { bottom: -0.25em; }
-sup { top: -0.5em; }
-b, strong { font-weight: bold; }
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
 
 .mix-bottom-stylesheet() {
-  .t-light { font-weight: 300; }
-  .t-normal { font-weight: normal; }
-  .t-semibold { font-weight: 600; }
-  .t-italic { font-style: italic; } // When not using <em>
-  .t-bold { font-weight: bold; } // When not using <strong>
-  .t-center { text-align: center; }
-  .t-left { text-align: left; }
-  .t-right { text-align: right; }
-  .t-upper { text-transform: uppercase; }
-  .t-lower { text-transform: lowercase; }
-  .t-title { text-transform: capitalize; }
-}
 
+  .t-light {
+    font-weight: 300;
+  }
+
+  .t-normal {
+    font-weight: normal;
+  }
+
+  .t-semibold {
+    font-weight: 600;
+  }
+
+  .t-italic {
+    font-style: italic;
+  }
+
+  // When not using <em>
+  .t-bold {
+    font-weight: bold;
+  }
+
+  // When not using <strong>
+  .t-center {
+    text-align: center;
+  }
+
+  .t-left {
+    text-align: left;
+  }
+
+  .t-right {
+    text-align: right;
+  }
+
+  .t-upper {
+    text-transform: uppercase;
+  }
+
+  .t-lower {
+    text-transform: lowercase;
+  }
+
+  .t-capitalize {
+    text-transform: capitalize;
+  }
+
+  .breakwords {
+    #TYPE.breakWord();
+  }
+
+  .breakwords-all {
+    #TYPE.breakAll();
+  }
+}

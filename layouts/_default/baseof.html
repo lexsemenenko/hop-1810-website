@@ -16,22 +16,6 @@
           </a>
         </div>
         <nav class="site-header__nav">
-          <div class="menu-mobile">
-            <button class="menu-mobile__toggle">
-              Menu
-            </button>
-            <div class="menu-mobile__content">
-              Menu content
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropdown__toggle">
-              Dropdown Toggle
-            </button>
-            <div class="dropdown__content">
-              Dropdown Content
-            </div>
-          </div>
           {{ block "menu-main" . }}
             {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
           {{ end }}
@@ -40,19 +24,22 @@
     </header>
 
     <main class="site-main">
-
       {{ partial "scratch/site/hero.html" . }}
       <div class='section section--hero  hero {{ delimit (.Scratch.Get "classes-hero") " " }}'>
-        <div class="section__content">
-          <div class="hero__content">
-            {{ block "hero" . }}{{ end }}
+        <div class="group">
+          <div class="section__content">
+            <div class="hero__content">
+              {{ block "hero" . }}{{ end }}
+            </div>
           </div>
         </div>
       </div>
 
       <div class="section section--content">
-        <div class="section__content">
-          {{ block "content" . }}{{ end }}
+        <div class="group">
+          <div class="section__content">
+            {{ block "content" . }}{{ end }}
+          </div>
         </div>
       </div>
     </main>
@@ -61,23 +48,19 @@
       <div class="section">
         <div class="section__content">
           {{ block "footer" . }}
-            <div class="row">
-              <div class="col-l-6 col-3">
+            <div data-grid="columns: 12, gutters-row: true">
+              <div data-grid-item="width: 3">
                 <h3>Адрес</h3>
                 <p>House of Prayer For All<br>
                 3503 Beechwood Blvd<br>
                 Pittsburgh, PA, 15217</p>
                 <p>hofp.us @ gmail.com</p>
               </div>
-              <div class="col-l-6 col-3">
+              <div data-grid-item="width: 3">
                 <h3>Меню</h3>
                 <nav class="site-footer__nav">
                   {{ partial "menu/menu--footer.html" (dict "menu" .Site.Menus.footer "currentNode" . "loopCount" 1) }}
                 </nav>
-              </div>
-              <div class="col-l-6 col-3">
-              </div>
-              <div class="col-l-6 col-3">
               </div>
             </div>
           {{ end }}
@@ -87,17 +70,7 @@
     <div class="site-footer-bottom">
       <div class="section">
         <div class="section__content">
-          <div class="row">
-            <div class="col-l-6 col-3">
-            </div>
-            <div class="col-l-6 col-3">
-            </div>
-            <div class="col-l-6 col-3">
-            </div>
-            <div class="col-l-6 col-3 t-right">
-              Powered by Hugo. <a href="http://lex.me">lex.me</a>
-            </div>
-          </div>
+          <p class="t-right">Powered by Hugo. <a href="http://lex.me">lex.me</a></p>
         </div>
       </div>
     </div>

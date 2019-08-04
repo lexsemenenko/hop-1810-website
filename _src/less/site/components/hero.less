@@ -1,0 +1,34 @@
+@hero-background-color:     lightslategray;
+@hero-link-color-hover:       darken(lightslategray, 5%);
+@hero-link-color:           lightslategray;
+@hero-padding-v:              22%;
+@hero-text-color:           white;
+
+.hero {
+  background-color: @hero-background-color;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: @hero-text-color;
+  position: relative;
+  text-align: center;
+  a {
+    color: @hero-text-color;
+  }
+  &__content {
+    padding-bottom: @hero-padding-v;
+    padding-top: @hero-padding-v;
+  }
+  &--home {
+    .mix-img-url("global/roberto-clemente-bridge-pittsburgh-180205.jpg") 
+  }
+  &--page {
+    background: lightblue;
+    .hero__title {
+      margin-bottom: 0;
+    }
+    .hero__content {
+      padding-top: 70px;
+      padding-bottom: 80px;
+    }
+  }
+}

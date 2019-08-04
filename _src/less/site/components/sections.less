@@ -1,3 +1,22 @@
+@section-padding-v: {
+  padding-top: @base-large*3;
+  padding-bottom: @base-large*3;
+
+  @media @break-primary {
+    padding-top: @base-large*2;
+    padding-bottom: @base-large*2;
+  }
+}
+
+.section {
+  padding-left: @section-padding-h-small;
+  padding-right: @section-padding-h-small;
+  @media @desktop-up {
+    padding-left: @section-padding-h;
+    padding-right: @section-padding-h;
+  }
+}
+
 .section--hero {
   position: relative;
   h1 {
@@ -21,7 +40,15 @@
 }
 
 .section--content {
-  padding-top: 30px;
-  padding-bottom: 60px;
   background: linear-gradient(to bottom, #f8f8f8, #fff);
+  @section-padding-v();
+}
+
+
+// Elements
+// =============================================================================
+
+.section__title {
+  text-align: center;
+  .h1;
 }

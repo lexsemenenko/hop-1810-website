@@ -1,5 +1,6 @@
+import './modules/Plyr';
 import Dropdown from './modules/Dropdown';
-import './modules/Plyr'; 
+
 
 const dropdown = new Dropdown();
 

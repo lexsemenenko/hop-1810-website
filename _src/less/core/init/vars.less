@@ -1,261 +1,238 @@
-// =============================================================================
-// INIT: VARS
-// =============================================================================
-
-
-
-
-
-// System / Paths
+/* =============================================================================
+// Init: Vars
 // =============================================================================
 
-// System / Paths
-// =============================================================================
+# Global Variables
 
-@toggle-simple-paths:         off;
+Version:            1.0.0
 
-@site-theme-path:             '';                                               // Leave empty if in root folder
-@url-images:                  "@{site-theme-path}/images/";
-@url-images-suffix:           '1.0.0';
+Changes:            1.0.0 | ...
 
+*/
 
 
 // Typography
 // =============================================================================
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,600,600i&display=swap&subset=cyrillic-ext');
 
-// @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&subset=cyrillic');
 
-@toggle-rem:                  on;                                               // rem units
-@t-margin-multiplier:         1;                                                // Amount the margin should be altered from the line-height
+@toggle-rem: on; // rem units
+@t-margin-multiplier: 0.5; // Amount the margin should be altered from the line-height
 
-@t-base:                      16px;
-@t-base-lh:                   1.6em;
-@t-family-base:               'Arial', sans-serif;
+@t-base-color: @color-black-80;
+@t-detail: @color-black-50;
 
-@t-base-color:                @color-black-80;
+@t-family-base: 'Open Sans', 'Arial', sans-serif;
 
-@t-large-xx:                  39px;
-@t-large-xx-lh:               @t-base-lh;
-@t-large-x:                   25px;
-@t-large-x-lh:                @t-base-lh;
-@t-large:                     21px;
-@t-large-lh:                  @t-base-lh;
-@t-small:                     13px;
-@t-small-lh:                  @t-base-lh;
-@t-small-x:                   11px;
-@t-small-x-lh:                @t-base-lh;
+
+@t-base: 16px;
+@t-base-lh: 1.5em;
+@t-large-xxx: 42px;
+@t-large-xxx-lh: @t-base-lh * 0.66;
+@t-large-xx: 32px;
+@t-large-xx-lh: @t-base-lh * 0.66;
+@t-large-x: 24px;
+@t-large-x-lh: @t-base-lh * 0.66;
+@t-large: 20px;
+@t-large-lh: @t-base-lh;
+@t-small: 14px;
+@t-small-lh: @t-base-lh;
+@t-small-x: 12px;
+@t-small-x-lh: @t-base-lh;
 
 // Extras
-@t-lh-dense:                  1.2em;
-@t-lh-no:                     0.8em;   // When displaying a block and removing the line-height. Adjust per font.
+@t-lh-dense: 1.2em;
+@t-lh-dense-x: 0.8em; // When displaying a block and removing the line-height. Adjust per font.
+
 
 // Type Breakpoint Sizes
 // =====================================
 
 // These are used either directly by you or as defualts
 // when using the type mixin with keywords instead of 
-// variables -->  .mix-text-size('large'); 
+// variables -->  #TYPE.createSize('large'); 
 
-// @t-breakpoint:                @break-primary;
-@t-breakpoint:                @tablet-up;
+@t-breakpoint: @break-primary;
+@t-break-size-multiplier: 0.85;
 
-@t-break--base:               15px;
-@t-break--base-lh:            1.6em;
+@t-break--base: 16px;
+@t-break--base-lh: 1.6em;
 
-@t-break--large-xx:           39px;
-@t-break--large-xx-lh:        @t-base-lh;
+@t-break--large-xxx: @t-large-xxx * @t-break-size-multiplier;
+@t-break--large-xxx-lh: @t-large-xxx-lh;
 
-@t-break--large-x:            25px;
-@t-break--large-x-lh:         @t-base-lh;
-@t-break--large:              200px;
-@t-break--large-lh:           @t-base-lh;
-@t-break--small:              13px;
-@t-break--small-lh:           @t-base-lh;
-@t-break--small-x:            11px;
-@t-break--small-x-lh:         @t-base-lh;
+@t-break--large-xx: @t-large-xx * @t-break-size-multiplier;
+@t-break--large-xx-lh: @t-large-xx-lh;
 
+@t-break--large-x: @t-large-x * @t-break-size-multiplier;
+@t-break--large-x-lh: @t-large-x-lh;
 
+@t-break--large: @t-large * @t-break-size-multiplier;
+@t-break--large-lh: @t-large-lh;
 
+@t-break--small: @t-small * @t-break-size-multiplier;
+@t-break--small-lh: @t-small-lh;
 
+@t-break--small-x: 12px;
+@t-break--small-x-lh: @t-small-x-lh;
 
-// Equalhieghts
+// Elements
 // =============================================================================
 
-@equalheight--class--column-last:       equalheights-last;                          // Used by grid (leave setting when not in use)
-@equalheight--class--column-first:      equalheights-first;                          // Used by grid (leave setting when not in use)
-@equalheight--class--row-last:          equalheights-row-last;
-@equalheight--class--row-first:         equalheights-row-first;
-
-
-// Layout
-// =============================================================================
-
-@site-max-width:              none; // To remove: Set to none
-@site-min-width:              0; // TO remove: Set to 0
-@section-padding-top:         0;
-@section-padding-btm:         0;
-
-@site-padding:                40px;
-// Breakpoints (Pass false to disable)
-@site-padding-large:          60px;
-@site-padding-large--break:   @widescreen-up;
-@site-padding-small:          20px;
-@site-padding-small--break:   @mobile;
-
-@base-small-xx:               5px;
-@base-small-x:                10px;
-@base-small:                  15px;
-@base-medium:                 25px;
-@base-large:                  40px;
-@base-large-x:                60px;
-@base-large-xx:               80px;
-
-@flex-small-xx:               1%;
-@flex-small-x:                2%;
-@flex-small:                  4%;
-@flex-medium:                 8%;
-@flex-large:                  16%;
-@flex-large-x:                20%;
-@flex-large-xx:               24%;
-
-@element-margin:              @base-medium;
-@element-margin-small:        @base-small-x;
-@element-margin-small-x:      @base-small-xx;
+@border-color: @color-black-15; // Defualt border color
+@border-light: 1px solid @color-black-15;
+@border-dark: 1px solid @color-black-60;
 
 
 // Links
 // =============================================================================
 
-@a-color:                               @color-blue;
-@a-color-hover:                         spin(@a-color, 170);
-@a-color-visited:                       purple;
-@a-hover-visted--class-only:            false;   // Do you hover and visited applied to <a> or .links class only
+@a-color: @color-blue;
+@a-color-hover: spin(@a-color, 170);
+@a-color-visited: purple;
+@a-hover-visted--class-only: false; // Do you hover and visited applied to <a> or .links class only
 
+
+// Layout Units
+// =============================================================================
+
+@base-small-xx: 5px;
+@base-small-x: 10px;
+@base-small: 15px;
+@base-medium: 23px;
+@base-large: 40px;
+@base-large-x: 60px;
+@base-large-xx: 70px;
+
+@flex-small-xx: 1%;
+@flex-small-x: 2%;
+@flex-small: 4%;
+@flex-medium: 8%;
+@flex-large: 16%;
+@flex-large-x: 20%;
+@flex-large-xx: 24%;
+
+@element-margin: @base-medium;
+@element-margin-small: @base-small-x;
+@element-margin-small-x: @base-small-xx;
 
 // Media Queries
 // =============================================================================
 
 // Assignments (semantic to site)
-@break-primary:               @mobile;
-// @break-secondary:             @tablet;  
+@break-primary: @tablet; // Primary Breakpoint
+@break-primary-up: @laptop-up; // Above primary breakpoint
+@break-secondary: @desktop;
 
 // Breakpoint Variables (descending)
-@screen:  ~"screen";
-@mobile:  ~"screen and (max-width: 480px)";
-@tablet:  ~"screen and (max-width: 768px)";
-@laptop:  ~"screen and (max-width: 1024px)";
+@screen: ~"screen";
+@mobile: ~"screen and (max-width: 480px)";
+@tablet: ~"screen and (max-width: 768px)";
+@laptop: ~"screen and (max-width: 1080px)";
 @desktop: ~"screen and (max-width: 1350px)";
 
 // Breakpoint Variables (specific)
-@tablet-only:  ~"screen and (max-width: 768px) and (min-width: 481px)";
-@laptop-only:  ~"screen and (max-width: 1024px) and (min-width: 769px)";
-@desktop-only: ~"screen and (max-width: 1600px) and (min-width: 1025px)";
+@tablet-only: ~"screen and (max-width: 768px) and (min-width: 481px)";
+@laptop-only: ~"screen and (max-width: 1024px) and (min-width: 769px)";
+@desktop-only: ~"screen and (max-width: 1600px) and (min-width: 1081px)";
 
 // Breakpoint Variables (ascending)
-@tablet-up:  ~"screen and (min-width: 481px)";
-@laptop-up:  ~"screen and (min-width: 769px)";
-@desktop-up: ~"screen and (min-width: 1025px)";
+@tablet-up: ~"screen and (min-width: 481px)";
+@laptop-up: ~"screen and (min-width: 769px)";
+@desktop-up: ~"screen and (min-width: 1081px)";
 @widescreen-up: ~"screen and (min-width: 1600px)";
 
+@chrome: ~"screen and (-webkit-min-device-pixel-ratio:0)"; // Used to traget CHrome Deesktop browser for small tweaks (ie. icon shift in blocks)
+
+// Example of passing a breakpoint to JS with media queries.
+
+// #JS.breakpoint(
+//   @element: 'body',
+//   @breakpoint: ~"screen",
+//   @content: 'widescreen'
+// );
+// #JS.breakpoint(
+//   @element: 'body',
+//   @breakpoint: @break-primary,
+//   @content: 'primary',
+// );
 
 // Colors
 // =============================================================================
 
-// Colors
-// =============================================================================
+@color-blue: #0da1ec; // THe only color in globals (used as default)
 
+@color-black: #000000;
+@color-black-95: #373537;
+@color-black-90: #404041;
+@color-black-85: #4d4e4f;
+@color-black-80: #58585b;
+@color-black-75: #5e6062;
+@color-black-70: #6d6e70;
+@color-black-65: #787a7e;
+@color-black-60: #808284;
+@color-black-55: #898b8e;
+@color-black-50: #939597;
+@color-black-45: #9b9ea1;
+@color-black-40: #a7a9ab;
+@color-black-35: #afb3b6;
+@color-black-30: #bbbdc0;
+@color-black-25: #c9cacb;
+@color-black-20: #d1d2d4;
+@color-black-15: #dddddd;
+@color-black-13: #e3e3e3;
+@color-black-10: #e6e7e8;
+@color-black-7: #ececec;
+@color-black-5: #f1f1f2;
+@color-black-3: #f5f5f6;
+@color-black-2: #fcfdfd;
 
-@color-blue:                  #2c80af; // THe only color in globals (used as default)
+@color-black-a-95: rgba(0, 0, 0, .95);
+@color-black-a-90: rgba(0, 0, 0, .9);
+@color-black-a-85: rgba(0, 0, 0, .85);
+@color-black-a-80: rgba(0, 0, 0, .8);
+@color-black-a-75: rgba(0, 0, 0, .75);
+@color-black-a-70: rgba(0, 0, 0, .7);
+@color-black-a-65: rgba(0, 0, 0, .65);
+@color-black-a-60: rgba(0, 0, 0, .6);
+@color-black-a-55: rgba(0, 0, 0, .55);
+@color-black-a-50: rgba(0, 0, 0, .5);
+@color-black-a-45: rgba(0, 0, 0, .45);
+@color-black-a-40: rgba(0, 0, 0, .4);
+@color-black-a-35: rgba(0, 0, 0, .35);
+@color-black-a-30: rgba(0, 0, 0, .3);
+@color-black-a-25: rgba(0, 0, 0, .25);
+@color-black-a-20: rgba(0, 0, 0, .2);
+@color-black-a-18: rgba(0, 0, 0, .18);
+@color-black-a-15: rgba(0, 0, 0, .15);
+@color-black-a-13: rgba(0, 0, 0, .13);
+@color-black-a-10: rgba(0, 0, 0, .1);
+@color-black-a-7: rgba(0, 0, 0, .07);
+@color-black-a-5: rgba(0, 0, 0, .05);
+@color-black-a-2: rgba(0, 0, 0, .02);
 
-@color-black:                 #000000;
-@color-black-95:              #373537;
-@color-black-90:              #404041;
-@color-black-85:              #4d4e4f;
-@color-black-80:              #58585b;
-@color-black-75:              #5e6062;
-@color-black-70:              #6d6e70;
-@color-black-65:              #787a7e;
-@color-black-60:              #808284;
-@color-black-55:              #898b8e;
-@color-black-50:              #939597;
-@color-black-45:              #9b9ea1;
-@color-black-40:              #a7a9ab;
-@color-black-35:              #afb3b6;
-@color-black-30:              #bbbdc0;
-@color-black-25:              #c9cacb;
-@color-black-20:              #d1d2d4;
-@color-black-15:              #dddddd;
-@color-black-13:              #e3e3e3;
-@color-black-10:              #e6e7e8;
-@color-black-7:               #ececec;
-@color-black-5:               #f1f1f2;
-@color-black-3:               #f5f5f6;
-@color-black-2:               #fcfdfd;      
-
-@color-black-a-95:            rgba(0,0,0,.95);
-@color-black-a-90:            rgba(0,0,0,.9);
-@color-black-a-85:            rgba(0,0,0,.85);
-@color-black-a-80:            rgba(0,0,0,.8);
-@color-black-a-75:            rgba(0,0,0,.75);
-@color-black-a-70:            rgba(0,0,0,.7);
-@color-black-a-65:            rgba(0,0,0,.65);
-@color-black-a-60:            rgba(0,0,0,.6);
-@color-black-a-55:            rgba(0,0,0,.55);
-@color-black-a-50:            rgba(0,0,0,.5);
-@color-black-a-45:            rgba(0,0,0,.45);
-@color-black-a-40:            rgba(0,0,0,.4);
-@color-black-a-35:            rgba(0,0,0,.35);
-@color-black-a-30:            rgba(0,0,0,.3);
-@color-black-a-25:            rgba(0,0,0,.25);
-@color-black-a-20:            rgba(0,0,0,.2);
-@color-black-a-18:            rgba(0,0,0,.18);
-@color-black-a-15:            rgba(0,0,0,.15);
-@color-black-a-13:            rgba(0,0,0,.13);
-@color-black-a-10:            rgba(0,0,0,.1);
-@color-black-a-7:             rgba(0,0,0,.07);
-@color-black-a-5:             rgba(0,0,0,.05);
-@color-black-a-2:             rgba(0,0,0,.02);
-
-@color-white-a-95:            rgba(255,255,255,.95);
-@color-white-a-90:            rgba(255,255,255,.9);
-@color-white-a-85:            rgba(255,255,255,.85);
-@color-white-a-80:            rgba(255,255,255,.8);
-@color-white-a-75:            rgba(255,255,255,.75);
-@color-white-a-70:            rgba(255,255,255,.7);
-@color-white-a-65:            rgba(255,255,255,.65);
-@color-white-a-60:            rgba(255,255,255,.6);
-@color-white-a-55:            rgba(255,255,255,.55);
-@color-white-a-50:            rgba(255,255,255,.5);
-@color-white-a-45:            rgba(255,255,255,.45);
-@color-white-a-40:            rgba(255,255,255,.4);
-@color-white-a-35:            rgba(255,255,255,.35);
-@color-white-a-30:            rgba(255,255,255,.3);
-@color-white-a-25:            rgba(255,255,255,.25);
-@color-white-a-20:            rgba(255,255,255,.2);
-@color-white-a-18:            rgba(255,255,255,.18);
-@color-white-a-15:            rgba(255,255,255,.15);
-@color-white-a-13:            rgba(255,255,255,.13);
-@color-white-a-10:            rgba(255,255,255,.1);
-@color-white-a-7:             rgba(255,255,255,.07);
-@color-white-a-5:             rgba(255,255,255,.05);
-@color-white-a-2:             rgba(255,255,255,.02);
-@color-white-a-0:             rgba(255,255,255,.0);
-
-// Icons
-// =============================================================================
-
-@i-family:                    'is-icons'; // Icon font-family Name
-@i-suffix:                    '1.0.0'; // Icon Font Suffix
-@icon-font-size-small:        @icon-font-size-medium * .9;
-@icon-font-size-medium:       100%;
-@icon-font-size-large:        @icon-font-size-medium * 1.4;
-@icon-valign:                 -0.1em;
-@icon-valign-large:           -0.1em;
-@icons--create-classes:       true;
-
-// =============================================================================
-// Hooks
-// =============================================================================
-
-.hook--section() {}
+@color-white-a-95: rgba(255, 255, 255, .95);
+@color-white-a-90: rgba(255, 255, 255, .9);
+@color-white-a-85: rgba(255, 255, 255, .85);
+@color-white-a-80: rgba(255, 255, 255, .8);
+@color-white-a-75: rgba(255, 255, 255, .75);
+@color-white-a-70: rgba(255, 255, 255, .7);
+@color-white-a-65: rgba(255, 255, 255, .65);
+@color-white-a-60: rgba(255, 255, 255, .6);
+@color-white-a-55: rgba(255, 255, 255, .55);
+@color-white-a-50: rgba(255, 255, 255, .5);
+@color-white-a-45: rgba(255, 255, 255, .45);
+@color-white-a-40: rgba(255, 255, 255, .4);
+@color-white-a-35: rgba(255, 255, 255, .35);
+@color-white-a-30: rgba(255, 255, 255, .3);
+@color-white-a-25: rgba(255, 255, 255, .25);
+@color-white-a-20: rgba(255, 255, 255, .2);
+@color-white-a-18: rgba(255, 255, 255, .18);
+@color-white-a-15: rgba(255, 255, 255, .15);
+@color-white-a-13: rgba(255, 255, 255, .13);
+@color-white-a-10: rgba(255, 255, 255, .1);
+@color-white-a-7: rgba(255, 255, 255, .07);
+@color-white-a-5: rgba(255, 255, 255, .05);
+@color-white-a-2: rgba(255, 255, 255, .02);
+@color-white-a-0: rgba(255, 255, 255, .0);

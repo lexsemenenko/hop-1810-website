@@ -1,0 +1,59 @@
+// =============================================================================
+// Module: Scroll => Mixins
+// =============================================================================
+
+
+.component--scroll(@class: 'lx-scroll',
+  @body,
+  @header,
+  @footer,
+  @header-height,
+  @footer-height) {
+
+  @class-base: e(@class);
+
+  .@{class-base}__body {
+    -webkit-overflow-scrolling: touch; // iOS
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    @body();
+  }
+
+  .@{class-base}__body--header {
+    top: @header-height;
+  }
+
+  .@{class-base}__body--header-footer {
+    top: @header-height;
+    bottom: @footer-height;
+  }
+
+  .@{class-base}__body--footer {
+    bottom: @footer-height;
+  }
+
+  .@{class-base}__footer,
+  .@{class-base}__header {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
+
+  .@{class-base}__header {
+    height: @header-height;
+    @header();
+  }
+
+  .@{class-base}__footer {
+    height: @footer-height;
+    bottom: 0;
+    @footer();
+  }
+}

@@ -1,0 +1,143 @@
+// =============================================================================
+// Atomic - Mixins
+// =============================================================================
+
+// Spacing
+// =============================================================================
+
+// Padding Classes
+// =====================================
+
+.mix-padding-class(@size: 0,
+  @class: unset) when not (@class =unset) {
+  .p-@{class} {
+    padding: @size;
+  }
+
+  .p-right-@{class} {
+    padding-right: @size;
+  }
+
+  .p-left-@{class} {
+    padding-left: @size;
+  }
+
+  .p-top-@{class} {
+    padding-top: @size;
+  }
+
+  .p-btm-@{class} {
+    padding-bottom: @size;
+  }
+
+  .p-sides-@{class} {
+    padding-left: @size;
+    padding-right: @size;
+  }
+
+  .p-ends-@{class} {
+    padding-top: @size;
+    padding-bottom: @size;
+  }
+}
+
+.mix-padding-class(@size: 0,
+  @class: unset) when (@class =unset) {
+  .p-all {
+    padding: @size;
+  }
+
+  .p-right {
+    padding-right: @size;
+  }
+
+  .p-left {
+    padding-left: @size;
+  }
+
+  .p-top {
+    padding-top: @size;
+  }
+
+  .p-btm {
+    padding-bottom: @size;
+  }
+
+  .p-sides {
+    padding-left: @size;
+    padding-right: @size;
+  }
+
+  .p-ends {
+    padding-top: @size;
+    padding-bottom: @size;
+  }
+}
+
+
+// Margins
+// =====================================
+
+.mix-margin-class(@size, @class: unset) when not (@class =unset) {
+  .m-@{class} {
+    margin: @size;
+  }
+
+  .m-right-@{class} {
+    margin-right: @size;
+  }
+
+  .m-left-@{class} {
+    margin-left: @size;
+  }
+
+  .m-top-@{class} {
+    margin-top: @size;
+  }
+
+  .m-btm-@{class} {
+    margin-bottom: @size;
+  }
+
+  .m-sides-@{class} {
+    margin-left: @size;
+    margin-right: @size;
+  }
+
+  .m-ends-@{class} {
+    margin-top: @size;
+    margin-bottom: @size;
+  }
+}
+
+.mix-margin-class(@size, @class: unset) when (@class =unset) {
+  .m-all {
+    margin: @size;
+  }
+
+  .m-right {
+    margin-right: @size;
+  }
+
+  .m-left {
+    margin-left: @size;
+  }
+
+  .m-top {
+    margin-top: @size;
+  }
+
+  .m-btm {
+    margin-bottom: @size;
+  }
+
+  .m-sides {
+    margin-left: @size;
+    margin-right: @size;
+  }
+
+  .m-ends {
+    margin-top: @size;
+    margin-bottom: @size;
+  }
+}

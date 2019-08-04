@@ -12,34 +12,28 @@
 // =====================================
 
 .btn {
-  .mix-btn(
-    @height: @btn-height, 
-    @bg-color: @btn-bg, 
-    @font-color: @btn-txt-color, 
-    @brd-radius: @btn-border-radius, 
-    @brd-size: @btn-brd-width, 
-    @brd-color: @btn-brd-color, 
-    @font-size: @btn-txt-size, 
-    @hover--font-color: @btn-txt-color
-  );
+  .mix-btn(@height: @btn-height,
+    @bg-color: @btn-bg,
+    @font-color: @btn-txt-color,
+    @brd-radius: @btn-border-radius,
+    @brd-size: @btn-brd-width,
+    @brd-color: @btn-brd-color,
+    @font-size: @btn-txt-size,
+    @hover--font-color: @btn-txt-color );
 }
 
 // Button Sizes
 // =====================================
 
-.mix-btn-size(
-  @class-name: small, 
-  @height: @btn-small-height, 
+.mix-btn-size(@class-name: small,
+  @height: @btn-small-height,
   @font-size: @btn-small-txt-size,
-  @proportion: @btn-proportion
-);
+  @proportion: @btn-proportion);
 
-.mix-btn-size(
-  @class-name: large, 
-  @height: @btn-large-height, 
+.mix-btn-size(@class-name: large,
+  @height: @btn-large-height,
   @font-size: @btn-large-txt-size,
-  @proportion: @btn-proportion
-);
+  @proportion: @btn-proportion);
 
 // Alternate Colors
 // =====================================
@@ -49,43 +43,7 @@
 /*[CHECK]-JS  |  Fix this indenting*/
 // 
 
-.mix-btn-color(
- @class-name: alt, 
- @bg-color: @btn-alt-bg, 
- @font-color: @btn-alt-txt-color, 
- @brd-color: @btn-alt-brd-color
-); 
-
-
-// Other
-// =====================================
-
-// Customize Button Disbaled Styling
-// -------------------------------------
-
-
-
-// Icon Only
-// =====================================
-
-// Params:          @class-name, 
-//                  @height, 
-//                  @font-size
-
-.mix-btn-icon-only(
-  @class-name: only-small, 
-  @height: 30px, 
-  @font-size: 120%
-);
-
-.mix-btn-icon-only(
-  @class-name: only, 
-  @height: 50px, 
-  @font-size: 160%
-);
-
-.mix-btn-icon-only(
-  @class-name: only-large, 
-  @height: 60px, 
-  @font-size: 180%
-);
+.mix-btn-color(@class-name: alt,
+  @bg-color: @btn-alt-bg,
+  @font-color: @btn-alt-txt-color,
+  @brd-color: @btn-alt-brd-color);

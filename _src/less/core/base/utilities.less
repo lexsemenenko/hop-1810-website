@@ -1,31 +1,34 @@
-/*
-
-===========================================================================
-Base: Utilities
-===========================================================================
+/* =============================================================================
+// Base: Utilities
+// =============================================================================  
 
 Version:            1.0.0
+
+Changes:            1.0.0 | ...
 
 */
 
 // Note these are added to the bottom of the style sheet.
 
-.cf { 
+.cf {
+
   &:before,
   &:after {
     content: "";
     display: table;
+    // Flexbox, clear fix for pseudo elements in Safari
+    flex-basis: 0;
+    order: 1;
   }
-  &:after { clear: both; }
+
+  &:after {
+    clear: both;
+  }
+
   *zoom: 1;
 }
 
-
-// Accessible Hiding Techniques
-// =====================================
-
-.hidden-visually, 
-.hide-v {
+.hide-v() {
   border: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -34,6 +37,7 @@ Version:            1.0.0
   padding: 0;
   position: absolute;
   width: 1px;
+
   &.focusable:active,
   &.focusable:focus {
     clip: auto;
@@ -44,12 +48,18 @@ Version:            1.0.0
     width: auto;
   }
 }
+
+.hide-v {
+  .hide-v();
+}
+
 .hide-text {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
   display: block;
 }
+
 .unhide-text {
   text-indent: 0;
   white-space: normal;
@@ -61,13 +71,12 @@ Version:            1.0.0
   left: -10000px;
   top: -10000px;
 }
+
 .hidden-abs-no {
   position: static;
   left: auto;
   top: auto;
 }
-
-
 
 .no-select {
   user-select: none;
@@ -75,29 +84,10 @@ Version:            1.0.0
   cursor: pointer;
 }
 
-// Typographic
-// =====================================
-
-.breakwords {
-  -ms-word-break: normal;
-  /* Non standard for webkit */
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-}
-.breakwords-all {
-  -ms-word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-all;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
+.no-scroll-y {
+  overflow-y: hidden;
 }
 
-
-// Overflow (scrolling)
-// =============================================================================
-
-.no-scroll-y { overflow-y: hidden; }
-.no-scroll-x { overflow-x: hidden; }
+.no-scroll-x {
+  overflow-x: hidden;
+}

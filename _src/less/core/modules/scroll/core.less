@@ -1,0 +1,46 @@
+// =============================================================================
+// Module: Scroll: Core
+// =============================================================================
+
+// Description:     You can create any combination of header/footer types 
+//                  with .component--scroll mixin. Bellow, 
+//                  We create a default example with a header and footer.
+
+// Usage:           Create as many types as you want. 
+// =============================================================================
+
+// Your Type
+// =====================================
+
+// .component--scroll(
+//   @class: 'is-scroll-yourtype', 
+//   @body: {},
+//   @header: {},
+//   @footer: {},
+//   @header-height: 80px,
+//   @footer-height: 60px
+// );
+
+// Appliying dynamically created classes to your classes
+
+// .is-modal__type--yourtype {
+// 	.is-modal__header {
+// 		.is-scroll-yourtype__header;
+// 	}
+// 	.is-modal__body {
+// 		.is-scroll-yourtype__body;
+// 		.is-scroll-yourtype__body--header-footer;
+// 	}
+// 	.is-modal__footer {
+// 		.is-scroll-yourtype__footer;
+// 	}
+// }
+
+.lx-scroll {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
