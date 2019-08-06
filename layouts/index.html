@@ -15,7 +15,7 @@
   </div>
 
   <div class="sermon-list" data-grid="columns: 12, gutters-row: true">
-    {{ range first 3 (where .Pages "Section" "sermon") }}
+    {{ range first 4 (where .Pages "Section" "sermon") }}
       {{ partial "preprocess/loop-sermon.html" . }}
     {{ end }}
   </div>

@@ -1,23 +1,30 @@
 {{ $var := .Scratch }}
 {{ partial "preprocess/sermon.html" . }}
 {{ $preprocess_sermon := $var.Get "preprocess_sermon" }}
-{{ $name_sermon := $preprocess_sermon.name_sermon }}
-{{ $sermon_date := $preprocess_sermon.sermon_date }}
-{{ $name_speaker := $preprocess_sermon.name_speaker }}
+{{ $name_sermon :=       $preprocess_sermon.name_sermon }}
+{{ $sermon_date :=       $preprocess_sermon.sermon_date }}
+{{ $name_speaker :=      $preprocess_sermon.name_speaker }}
+{{ $speaker_position :=  $preprocess_sermon.speaker_position }}
+{{ $sermon_url :=        $preprocess_sermon.sermon_url }}
+{{ $sermon_youtube_id := $preprocess_sermon.sermon_id_youtube }}
 
-<div data-grid-item="width: 6, width-large: 4">
-  <div class="sermon-list__item">
-    <div class="sermon-list__meta">
-    {{ $sermon_date }}
+<div data-grid-item="width: 10, offset: 1 width-large: 8, offset-large: 2">
+  <a href="{{.Permalink}}">
+    <div class="sermon-list__item">
+      <div class="sermon-list__header">
+        <div class="sermon-list__meta">
+        {{ $sermon_date }}
+        </div>
+        <h3 class="sermon-list__title">{{ $name_sermon }}</h3>
+        <div class="sermon-list__speaker">{{ $name_speaker }} - {{ $speaker_position }}</div>
+      </div>
+      <div class="sermon-list__body">
+        <div class="sermon-list__icons">
+          {{ with $sermon_url }}<span class="icon icon--large icon--audio"></span>{{ end }}
+          {{ with $sermon_youtube_id }}<span class="icon icon--large icon--player"></span>{{ end }}
+        </div>
+
+      </div>
     </div>
-    <div class="sermon-list__header">
-      <h3 class="sermon-list__title">{{ $name_sermon }}</h3>
-      <div class="sermon-list__speaker">{{ $name_speaker }}</div>
-    </div>
-    <div class="sermon-list__body">
-    </div>
-    <div class="sermon-list__footer">
-      <a class="btn" href="{{.Permalink}}">Слушать</a>
-    </div>
-  </div>
+  </a>
 </div>

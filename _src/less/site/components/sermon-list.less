@@ -3,46 +3,73 @@
 // =============================================================================
 
 .sermon-list {
+  a {
+    color: @t-base-color;
+  }
   &__item {
-    margin-bottom: @element-margin;
+    // margin-bottom: @element-margin;
     box-shadow: 3px 5px 30px 0 rgba(0, 0, 0, 0.15);
     border-radius: 3px;
-    height: 100%;
+    // height: 100%;
     position: relative;
-    padding-bottom: 65px;
+    // padding-bottom: 65px;
     transition: all .3s cubic-bezier(.2, .5, .3, 1);
-    border-top: 4px solid transparent;
+    // border-top: 4px solid transparent;
   }
 
   &__header {
-    padding: (@base-medium/2) @base-medium;
+    padding: 0 @base-medium;
+    padding-top: @base-medium;
+    margin-bottom: (@base-medium / 2);
   }
 
   &__title {
     .t-large;
     color: @t-color-dark;
+    font-weight: 600;
+    .t-dense;
   }
 
   &__speaker {
-    padding-bottom: @base-medium/2
+    // padding-bottom: @base-medium/2;
+    font-style: italic;
   }
 
-  &__body {}
-
-  &__footer {
-    border-top: 1px solid @color-black-15;
-    padding: @base-medium/2 @base-medium;
-    background-color: @color-black-3;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  &__body {
+    margin-top: (@base-medium / 2);
+    padding: 0 @base-medium;
+    padding-bottom: @base-medium/2;
   }
+
+  &__icons {
+    // position: absolute;
+    // right: @base-medium;
+    // top: 50%;
+    // transform: translateY(-50%);
+    // margin-top: 4px; // Nudge
+    .icon {
+      margin-right: 0.2em;
+    }
+  }
+
+  // &__footer {
+  //   border-top: 1px solid @color-black-15;
+  //   padding: @base-medium/2 @base-medium;
+  //   background-color: @color-black-3;
+  //   position: absolute;
+  //   bottom: 0;
+  //   width: 100%;
+  // }
 
   &__meta {
     .t-small;
     .t-italic;
-    padding: @base-medium;
-    padding-bottom: 0;
-    color: @color-black-50;
+    // padding: @base-medium;
+    padding-bottom: 0.5em;
+  }
+  &:hover {
+    .icon {
+      fill: red;
+    }
   }
 }

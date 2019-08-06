@@ -35,13 +35,17 @@
 
   {{ with $sermon_youtube_id }}
   <p><strong>Видео:</strong></p>
-  <div class="plyr__video-embed">
-    <iframe
-      src="https://www.youtube.com/embed/{{ . }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-      allowfullscreen
-      allowtransparency
-      allow="autoplay"
-    ></iframe>
+  <div data-grid="columns: 12">
+    <div data-grid-item="width: 8, width-large: 7">
+      <div class="plyr__video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/{{ . }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+          allowfullscreen
+          allowtransparency
+          allow="autoplay"
+        ></iframe>
+      </div>
+    </div>
   </div>
   {{ end }}
 

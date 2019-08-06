@@ -5,8 +5,10 @@
 
 {{ define "content" }}
 
-  <div class="content__intro">
-    {{ .Params.intro }}
+  <div data-grid="columns: 12">
+    <div class="t-center" data-grid-item="width: 8, offset: 2, width-large: 6, offset-large: 3">
+      <p class="t-lead t-center">{{ .Params.intro }}</p>
+    </div>
   </div>
 
   <div class="sermon-list" data-grid="columns: 12, gutters-row: true">
