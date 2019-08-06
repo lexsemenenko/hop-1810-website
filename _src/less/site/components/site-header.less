@@ -40,9 +40,10 @@
   }
 
   transition: background-color 0.5s;
-  background-color: transparent;
+  background-color: fade(@gray-dark-xxx, 40%);
 
   &.active {
     background-color: @gray-dark-xxx;
+    background-color: fade(@gray-dark-xxx, 98%);
   }
 }
