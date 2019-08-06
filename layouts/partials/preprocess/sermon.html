@@ -17,6 +17,7 @@
 {{ $sermon := where (.Site.RegularPages.RelatedIndices . "media_id" ) "Type" "media" }}
 {{ range $sermon }}
   {{ $var.SetInMap "rel_media" "url" .Params.url_audio }}
+  {{ $var.SetInMap "rel_media" "id_yt" .Params.id_youtube }}
 {{ end }}
 {{ $rel_media := $var.Get "rel_media" }}
 
@@ -41,5 +42,6 @@
 {{ $var.SetInMap "preprocess_sermon" "sermon_date" $sermon_date }}
 {{ $var.SetInMap "preprocess_sermon" "name_speaker"  (printf "%[1]s %[2]s" $rel_people.first_name $rel_people.last_name) }}
 {{ $var.SetInMap "preprocess_sermon" "sermon_url" $rel_media.url }}
+{{ $var.SetInMap "preprocess_sermon" "sermon_id_youtube" $rel_media.id_yt }}
 {{ $var.SetInMap "preprocess_sermon" "speaker_position" $rel_people.position }}
 {{ $var.SetInMap "preprocess_sermon" "speaker_person_type" $rel_people.person_type }}
