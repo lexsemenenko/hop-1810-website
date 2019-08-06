@@ -4,7 +4,7 @@ import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugin
 
 class StickyHeader {
   constructor() {
-    // this.headerHeight = $('.site-header').outerHeight();
+    this.headerHeight = $('.site-header').outerHeight();
     this.createNewScrollMagic()
   }
 
@@ -13,7 +13,7 @@ class StickyHeader {
     this.scene =  new ScrollMagic.Scene({
       triggerElement: '.section--content',
       duration: 0,
-      offset: -100
+      offset: -this.headerHeight
     })
     .setClassToggle('.site-header', 'active')
     .triggerHook(0)

@@ -63,11 +63,6 @@ menu:
   main:
     # Level One
     # =====================================
-
-    - name: "Главная"
-      weight: 1
-      url: "/"
-      identifier: "home"
     - name: "Проповеди"
       weight: 3
       url: "/sermon/"

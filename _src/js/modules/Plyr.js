@@ -4,7 +4,8 @@ const plyrAduio = new Plyr('.plyr-audio-player', {
   autoplay: false
 });
 const plyrYoutube = new Plyr('.plyr__video-embed', {
-  showinfo: 0
+  showinfo: 0,
+  ratio: '16:9'
 });
 
 plyrAduio.on('play', event => {
