@@ -9,10 +9,14 @@ const plyrYoutube = new Plyr('.plyr__video-embed', {
 
 plyrAduio.on('play', event => {
   const instance = event.detail.plyr;
-  plyrYoutube.stop();
+  if (plyrYoutube.playing) {
+    plyrYoutube.pause();
+  }
 });
 
 plyrYoutube.on('play', event => {
   const instance = event.detail.plyr;
-  plyrAduio.stop();
+  if (plyrAduio.playing) {
+    plyrAduio.pause();
+  }
 });

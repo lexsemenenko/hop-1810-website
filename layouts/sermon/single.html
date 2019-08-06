@@ -15,17 +15,22 @@
   {{ $sermon_date := $preprocess_sermon.sermon_date }}
  
   <h2 class="h3">{{ $name_sermon }}</h2>
-  <p>{{ $name_speaker }} | {{ $sermon_date }} </p>
+  <p>{{ $name_speaker }} - {{ $speaker_position }} | {{ $sermon_date }} </p>
 
   {{ if false }}
-    {{ $speaker_person_type }} | {{ $speaker_position }}
+    {{ $speaker_person_type }} 
   {{ end }}
 
   {{ with $sermon_url }}
   <p><strong>Аудио:</strong></p>
-  <audio class="plyr-audio-player" controls>
-    <source src="{{ . }}" type="audio/mp3">
-  </audio>
+  <div data-grid="columns: 12">
+    <div data-grid-item="width: 8, width-large: 7">
+      <audio class="plyr-audio-player" controls>
+        <source src="{{ . }}" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+
   {{ end }}
 
   {{ with $sermon_youtube_id }}
