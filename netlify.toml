@@ -3,7 +3,7 @@
   command = "gulp build"
 
 [context.production.environment]
-  HUGO_VERSION = "0.54"
+  HUGO_VERSION = "0.56.3"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.54"
+  HUGO_VERSION = "0.56.3"
