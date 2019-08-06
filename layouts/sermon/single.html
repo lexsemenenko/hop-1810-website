@@ -14,16 +14,22 @@
   {{ $speaker_person_type := $preprocess_sermon.speaker_person_type }}
   {{ $sermon_date := $preprocess_sermon.sermon_date }}
  
-  <h2 class="h2">{{ $name_sermon }}</h2>
-  <p>{{ $sermon_date }} {{ $name_speaker }} | {{ $speaker_person_type }} | {{ $speaker_position }} </p>
+  <h2 class="h3">{{ $name_sermon }}</h2>
+  <p>{{ $name_speaker }} | {{ $sermon_date }} </p>
+
+  {{ if false }}
+    {{ $speaker_person_type }} | {{ $speaker_position }}
+  {{ end }}
 
   {{ with $sermon_url }}
+  <p><strong>Аудио:</strong></p>
   <audio class="plyr-audio-player" controls>
     <source src="{{ . }}" type="audio/mp3">
   </audio>
   {{ end }}
 
   {{ with $sermon_youtube_id }}
+  <p><strong>Видео:</strong></p>
   <div class="plyr__video-embed">
     <iframe
       src="https://www.youtube.com/embed/{{ . }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
