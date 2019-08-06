@@ -159,7 +159,7 @@ function hugo(cb) {
 function images() {
   return src(paths.src.images)
     .pipe(newer(paths.dest.images))
-    // .pipe(imagemin())
+    .pipe(imagemin())
     .pipe(dest(paths.dest.images));
 }
 
