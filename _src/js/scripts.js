@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import './modules/Plyr';
 import Dropdown from './modules/Dropdown';
 import StickyHeader from './modules/StickyHeader';
@@ -11,4 +12,3 @@ const mobileMenu = new Dropdown({
   toggle: ".menu-mobile__toggle",
   content: ".menu-mobile__content"
 });
- 

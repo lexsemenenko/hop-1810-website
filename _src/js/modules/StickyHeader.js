@@ -5,7 +5,7 @@ import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugin
 class StickyHeader {
   constructor() {
     this.headerHeight = $('.site-header').outerHeight();
-    this.createNewScrollMagic()
+    this.createNewScrollMagic();
   }
 
   createNewScrollMagic() {
