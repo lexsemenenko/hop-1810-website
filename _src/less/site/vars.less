@@ -7,31 +7,27 @@
 
 @toggle-simple-paths: off;
 
-@site-theme-path: ''; // Leave empty if in root folder
+@site-theme-path: ""; // Leave empty if in root folder
 @url-images: "@{site-theme-path}/images/";
-@url-images-suffix: '1.0.0';
+@url-images-suffix: "1.0.0";
 
-
-#JS.breakpoint(@element: 'body',
+#JS.breakpoint(
+  @element: "body",
   @breakpoint: ~"screen",
-  @content: 'widescreen'
+  @content: "widescreen"
 );
-#JS.breakpoint(@element: 'body',
-  @breakpoint: @desktop,
-  @content: 'large'
-);
-#JS.breakpoint(@element: 'body',
+#JS.breakpoint(@element: "body", @breakpoint: @desktop, @content: "large");
+#JS.breakpoint(
+  @element: "body",
   @breakpoint: @break-primary,
-  @content: 'small'
+  @content: "small"
 );
 
 // @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&subset=cyrillic');
 
 @t-base: 16px;
-@t-family-base: 'Open Sans', sans-serif;
+@t-family-base: "Open Sans", sans-serif;
 @t-breakpoint: @tablet;
-
-
 
 @t-large-xx: 48px;
 @t-large-xx-lh: 0.9em;
@@ -51,7 +47,7 @@
 @gray-dark-xxx: #222222;
 
 @t-base-color: #8a919c;
-@t-color-dark: #3d1a4a;
+@t-color-dark: #313131;
 
 @section-padding-h: 30px;
 @section-padding-h-small: 20px;

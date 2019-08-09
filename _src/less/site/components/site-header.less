@@ -1,3 +1,8 @@
+@site-header-logo-height: 50px;
+@site-header-padding-v: 7px;
+@site-header-height: @site-header-logo-height + @site-header-padding-v * 2;
+@site-header-logo-width: 35px;
+
 .site-header {
   .cf;
   z-index: 100;
@@ -5,38 +10,44 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: @site-header-height;
+  padding-top: @site-header-padding-v;
+  padding-bottom: @site-header-padding-v;
+  margin-top: -3px;
 
   a {
     color: white;
     display: inline-block;
   }
 
-  &__logo {
-    width: 30%;
+  &__logo-icon {
+    display: block;
+    width: @site-header-logo-width;
+    height: @site-header-logo-height;
+    background-size: 100%;
     float: left;
-    padding-top: 7px;
-    .cf;
+    .mix-img-url("global/hofp-logo.png");
+  }
+
+  &__logo {
+    height: @site-header-logo-height;
+    // width: 30%;
+    // float: left;
+    position: relative;
+    // .cf;
 
     h2 {
-      font-size: 18px;
+      position: absolute;
+      top: 50%;
+      left: @site-header-logo-width + 8px;
+      transform: translateY(-50%);
+      font-size: 22px;
       font-weight: bold;
-      line-height: 28px;
-      float: left;
-    }
-
-    .icon {
-      width: 28px;
-      width: 1.75rem;
-      height: 28px;
-      height: 1.75rem;
-      margin-right: 4px;
-      float: left;
     }
   }
 
   &__nav {
-    width: 70%;
-    float: left;
+    display: none;
   }
 
   transition: background-color 0.5s;
@@ -44,6 +55,6 @@
 
   &.active {
     background-color: @gray-dark-xxx;
-    background-color: fade(@gray-dark-xxx, 98%);
+    background-color: fade(@gray-dark-xxx, 97%);
   }
 }

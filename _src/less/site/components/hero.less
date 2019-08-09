@@ -18,11 +18,15 @@
 
   &__content {
     padding-bottom: @hero-padding-v;
-    padding-top: @hero-padding-v + 6%; // More padding for sticky header on top
+    padding-top: @hero-padding-v + 3%; // More padding for sticky header on top
+    @media @break-primary {
+      padding-bottom: @hero-padding-v + 2%;
+      padding-top: @hero-padding-v + 20%;
+    }
   }
 
   &--home {
-    .mix-img-url("global/roberto-clemente-bridge-pittsburgh-180205.jpg")
+    .mix-img-url("global/roberto-clemente-bridge-pittsburgh-180205.jpg");
   }
 
   &--page {

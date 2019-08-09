@@ -2,7 +2,6 @@
 
 // Changes:         1.0.1 | Moved hooks into this file
 
-
 @btn-border-radius: 4px; // Set to 0 for none
 @btn-proportion: 2.2; // Padding Proportions (w vs. h)
 @btn-brd-width: 1px; // Set to 0 for none
@@ -12,7 +11,6 @@
 @btn-letter-spacing: 0.02em; // For on-the-go use to fix letterspacing, Used in buttons
 @btn-gradient: off; // On or Off (adds gradient)
 @btn-gradient-amount: 6%; // Percentage for gradient
-
 
 // Primary Button
 @btn-bg: @color-blue;
@@ -37,9 +35,11 @@
 @btn-icon-only-height: 43px;
 @btn-icon-only-large-height: 53px;
 
+.hook--mix-btn() {
+}
 
-.hook--mix-btn() {}
+.hook--btn-disabled() {
+}
 
-.hook--btn-disabled() {}
-
-.hook--btn-inside() {}
+.hook--btn-inside() {
+}

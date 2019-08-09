@@ -8,17 +8,19 @@
 
     <header class="site-header">
       <div class="section">
-        <div class="site-header__logo">
-          <a href="/">
-            <span class="icon icon--logo"></span>
-            <h2><span class="hide-v">House of Prayer for All</span>HOFP.US</h2>
-          </a>
-        </div>
-        <nav class="site-header__nav">
-          {{ block "menu-main" . }}
-            {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
-          {{ end }}
-        </nav>
+        <div class="group">
+          <div class="site-header__logo">
+            <a href="/">
+              <span class="site-header__logo-icon"></span>
+              <h2><span class="hide-v">House of Prayer for All</span>HOFP.US</h2>
+            </a>
+          </div>
+          <nav class="site-header__nav">
+            {{ block "menu-main" . }}
+              {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
+            {{ end }}
+          </nav>
+        </div>    
       </div>
     </header>
 
