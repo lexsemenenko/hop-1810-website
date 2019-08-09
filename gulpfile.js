@@ -231,10 +231,14 @@ function browsersYearsBack(years) {
 
 // SVG Settings
 svgSettings = {
+  shape: {
+    spacing: {
+      padding: 500,
+    }
+  },
   mode: {
     css: {
       sprite: 'svg/sprite.svg', // renamed to remove .css from filename
-      dimensions: "--ratio",
       render: {
         css: {
           template: './gulp/templates/sprite.css',

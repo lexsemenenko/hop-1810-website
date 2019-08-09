@@ -11,14 +11,12 @@
 @url-images: "@{site-theme-path}/images/";
 @url-images-suffix: "1.0.0";
 
-#JS.breakpoint(
-  @element: "body",
+#JS.breakpoint(@element: "body",
   @breakpoint: ~"screen",
   @content: "widescreen"
 );
 #JS.breakpoint(@element: "body", @breakpoint: @desktop, @content: "large");
-#JS.breakpoint(
-  @element: "body",
+#JS.breakpoint(@element: "body",
   @breakpoint: @break-primary,
   @content: "small"
 );
@@ -48,6 +46,9 @@
 
 @t-base-color: #8a919c;
 @t-color-dark: #313131;
+
+// @color-rose: #ff5284;
+@color-rose-orange: #F2717C;
 
 @section-padding-h: 30px;
 @section-padding-h-small: 20px;

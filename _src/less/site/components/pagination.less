@@ -1,0 +1,29 @@
+.pagination {
+  margin-top: @element-margin;
+  .t-large;
+  .t-bold;
+  display: flex;
+  justify-content: center;
+}
+
+.page-item {
+  padding: 0.3em;
+
+  a {
+    color: @t-color-dark;
+  }
+
+  &.active {
+    a {
+      color: @color-rose-orange;
+    }
+  }
+
+  &.disabled {
+    a {
+      color: @color-black-45;
+    }
+  }
+}
+
+.page-link {}
