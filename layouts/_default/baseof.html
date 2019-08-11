@@ -16,6 +16,14 @@
             </a>
           </div>
           <nav class="site-header__nav">
+            <div class="dropdown">
+              <div class="dropdown__toggle">
+                Menu
+              </div>
+              <div class="dropdown__content">
+                Menu Content
+              </div>
+            </div>
             {{ block "menu-main" . }}
               {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
             {{ end }}

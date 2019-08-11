@@ -7,8 +7,8 @@ import StickyHeader from './modules/StickyHeader';
 const dropdown = new Dropdown();
 const stickyHeader = new StickyHeader();
 
-const mobileMenu = new Dropdown({
-  block: ".menu-mobile",
-  toggle: ".menu-mobile__toggle",
-  content: ".menu-mobile__content"
-});
+// const mobileMenu = new Dropdown({
+//   block: ".menu-mobile",
+//   toggle: ".menu-mobile__toggle",
+//   content: ".menu-mobile__content"
+// });

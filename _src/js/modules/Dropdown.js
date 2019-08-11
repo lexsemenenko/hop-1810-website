@@ -11,13 +11,31 @@ class Dropdown {
       block = '.dropdown',
       toggle = '.dropdown__toggle',
       content = '.dropdown__content',
+      tmplToggle = null,
+      // tmplToggle = `
+      //   <div class="">
+      //     <span>haha</span>
+      //   </div>`
     } = s;
 
+
+    // Selections
     this.block = $(block);
     this.toggle = $(toggle);
     this.content = $(content);
 
+    // Text
+    this.toggleText = this.toggle.text();
+
+    // Fire Functions
     this.menuEvents();
+    this.replaceWithTemplates(tmplToggle);
+  }
+
+  replaceWithTemplates(tmplToggle) {
+    if (tmplToggle) {
+      this.toggle.replaceWith($(tmplToggle));
+    }
   }
   
   menuEvents() {
