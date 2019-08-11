@@ -11,11 +11,12 @@ class Dropdown {
       block = '.dropdown',
       toggle = '.dropdown__toggle',
       content = '.dropdown__content',
-      tmplToggle = null,
-      // tmplToggle = `
-      //   <div class="">
-      //     <span>haha</span>
-      //   </div>`
+      appendToggleClass = '.dropdown__toggle',
+      // tplToggle = null,
+      tplToggle = `
+        <div class="hey">
+          <span class="dropdown__toggle"></span>
+        </div>`
     } = s;
 
 
@@ -23,18 +24,21 @@ class Dropdown {
     this.block = $(block);
     this.toggle = $(toggle);
     this.content = $(content);
+    this.appendToggleClass = appendToggleClass;
 
     // Text
     this.toggleText = this.toggle.text();
 
     // Fire Functions
     this.menuEvents();
-    this.replaceWithTemplates(tmplToggle);
+    this.replaceWithTemplates(tplToggle);
   }
 
-  replaceWithTemplates(tmplToggle) {
-    if (tmplToggle) {
-      this.toggle.replaceWith($(tmplToggle));
+  replaceWithTemplates(templateToggle) {
+    const newStuff = $(templateToggle);
+    newStuff.find(this.appendToggleClass).text("lex")
+    if (templateToggle) {
+      this.toggle.replaceWith(newStuff);
     }
   }
   

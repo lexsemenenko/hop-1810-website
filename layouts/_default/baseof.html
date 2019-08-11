@@ -16,6 +16,7 @@
             </a>
           </div>
           <nav class="site-header__nav">
+            {{ if false }}
             <div class="dropdown">
               <div class="dropdown__toggle">
                 Menu
@@ -24,6 +25,7 @@
                 Menu Content
               </div>
             </div>
+            {{ end }}
             {{ block "menu-main" . }}
               {{ partial "menu/menu--main.html" (dict "menu" .Site.Menus.main "currentNode" . "loopCount" 1) }}
             {{ end }}
